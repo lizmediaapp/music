@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Local Files Help - LizMusic</title>
+    <meta name="description" content="Learn how LizMusic works with local music files on Android, including storage access, library scanning, and troubleshooting when tracks do not appear.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/help-local.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="Local Files Help - LizMusic">
+    <meta property="og:description" content="Storage access, scanning, and troubleshooting for local music playback in LizMusic.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/help-local.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Local Files Help - LizMusic">
+    <meta name="twitter:description" content="Get help with local music libraries, scanning, and permissions in LizMusic.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <main class="mx-auto max-w-5xl px-6 py-12">
+        <a href="/help.html" class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:text-primary">Back to Help Center</a>
+        <div class="mt-8 max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Local Files Help</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Use LizMusic with music already stored on your Android device</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic supports local music playback when your files already live on the device. If tracks do not appear,
+                the issue is usually tied to storage access, folder location, or how the library was scanned.
+            </p>
+        </div>
+
+        <section class="mt-10 grid gap-5 md:grid-cols-2">
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Basic setup</h2>
+                <ol class="mt-4 list-decimal space-y-3 pl-5 text-[0.98rem] leading-8 text-slate-600">
+                    <li>Store your music files on the device in a location Android allows the app to read.</li>
+                    <li>Grant the necessary media or storage access permission when LizMusic asks for it.</li>
+                    <li>Open the app and refresh or rescan the library if new files were just added.</li>
+                    <li>Check that your music files use formats LizMusic can recognize.</li>
+                </ol>
+            </article>
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">What local mode does not need</h2>
+                <ul class="mt-4 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                    <li>No WebDAV server is required.</li>
+                    <li>No OneDrive account is required.</li>
+                    <li>No internet connection is required for ordinary local playback once the files are on the device.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">If your music is missing</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Permission not granted</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Open Android app settings and confirm LizMusic still has access to your media or storage.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Files were added recently</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Refresh or rescan the library after copying new music onto the device.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Unsupported or unusual files</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Verify the files are audio files rather than archives, shortcut files, or metadata-only entries.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Moved between apps or folders</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">If a file was relocated or deleted outside LizMusic, the old library entry may need a refresh before playback works again.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 px-8 py-10 text-white">
+            <h2 class="text-3xl font-extrabold">Need broader guidance?</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+                If your local library works but cloud-connected playback does not, compare this page with the WebDAV and OneDrive help guides to isolate which storage path is failing.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="/help-webdav.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">WebDAV help</a>
+                <a href="/help-onedrive.html" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">OneDrive help</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

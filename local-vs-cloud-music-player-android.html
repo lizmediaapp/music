@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) return;
+        var targetHost = host;
+        var shouldRedirect = false;
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+        if (host === canonicalHost && window.location.protocol !== 'https:') shouldRedirect = true;
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) window.location.replace(target);
+      })();
+    </script>
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Local vs Cloud Music Player for Android - LizMusic</title>
+    <meta name="description" content="Compare local and cloud music playback on Android with LizMusic, including Google Drive, Dropbox, OneDrive, WebDAV, offline cache, and lyrics.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/local-vs-cloud-music-player-android.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="Local vs Cloud Music Player for Android - LizMusic">
+    <meta property="og:description" content="Decide whether local files, cloud storage, WebDAV, or a hybrid offline workflow fits your Android music library.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/local-vs-cloud-music-player-android.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Local vs Cloud Music Player for Android - LizMusic">
+    <meta name="twitter:description" content="Compare local files with Google Drive, Dropbox, OneDrive, WebDAV, and offline cache in LizMusic.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <main class="mx-auto max-w-5xl px-6 py-12">
+        <a href="/cloud-music-player-android.html" class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:text-primary">Back to cloud music</a>
+        <div class="mt-8 max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Local vs Cloud</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Local files, cloud music, or both on Android?</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic supports local folders, Google Drive, Dropbox, OneDrive, WebDAV, and offline-friendly listening so you can pick the storage model that fits your own library.
+            </p>
+        </div>
+
+        <section class="mt-10 grid gap-5 md:grid-cols-3">
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Use local files when</h2>
+                <ul class="mt-4 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                    <li>You want playback without account authorization.</li>
+                    <li>You often listen without reliable internet.</li>
+                    <li>Your Android device has enough storage for the albums you use most.</li>
+                </ul>
+            </article>
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Use cloud music when</h2>
+                <ul class="mt-4 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                    <li>Your full library already lives in Google Drive, Dropbox, OneDrive, or WebDAV.</li>
+                    <li>You want access without copying every album to the phone.</li>
+                    <li>You manage files from multiple devices.</li>
+                </ul>
+            </article>
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Use a hybrid setup when</h2>
+                <ul class="mt-4 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                    <li>You keep the full library in cloud storage.</li>
+                    <li>You cache favorites for travel or weak networks.</li>
+                    <li>You want one player for both local and remote music.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.15rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Continue comparing LizMusic options</h2>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                <a href="/local-music-player-android.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">Local music player for Android</a>
+                <a href="/cloud-music-player-android.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">Cloud music player for Android</a>
+                <a href="/offline-music-player-android.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">Offline music player for Android</a>
+                <a href="/help.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">LizMusic help center</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

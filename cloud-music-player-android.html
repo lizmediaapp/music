@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) return;
+        var targetHost = host;
+        var shouldRedirect = false;
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+        if (host === canonicalHost && window.location.protocol !== 'https:') shouldRedirect = true;
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) window.location.replace(target);
+      })();
+    </script>
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Cloud Music Player for Android - LizMusic</title>
+    <meta name="description" content="LizMusic is a cloud music player for Android with Google Drive, Dropbox, OneDrive, WebDAV, local files, offline cache, playlists, and lyrics.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/cloud-music-player-android.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="Cloud Music Player for Android - LizMusic">
+    <meta property="og:description" content="Compare LizMusic playback for Google Drive, Dropbox, OneDrive, WebDAV, local files, and offline listening on Android.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/cloud-music-player-android.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Cloud Music Player for Android - LizMusic">
+    <meta name="twitter:description" content="One Android player for your own cloud music libraries, local files, offline cache, playlists, and lyrics.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Cloud Music Player for Android",
+        "url": "https://music.lizmediaapp.com/cloud-music-player-android.html",
+        "description": "LizMusic cloud playback guide for user-owned Google Drive, Dropbox, OneDrive, WebDAV, local, and offline music libraries.",
+        "hasPart": [
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/personal-audio-library-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/google-drive-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/dropbox-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/onedrive-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/webdav-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/what-is-webdav.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/is-cloud-music-playback-private.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/local-vs-cloud-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/offline-music-player-android.html"}
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <main class="mx-auto max-w-6xl px-6 py-12">
+        <a href="/" class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:text-primary">Back to LizMusic</a>
+        <div class="mt-8 max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Cloud Music</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">A cloud music player for Android libraries you control</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic connects local files, Google Drive, Dropbox, OneDrive, and WebDAV into one music-player experience for Android. It is built for personal audio files you own, created, recorded, or have permission to use.
+            </p>
+        </div>
+
+        <section class="mt-10 rounded-3xl border border-orange-100 bg-[#fffaf5] p-8 shadow-sm">
+            <h2 class="text-[1.7rem] font-extrabold leading-[1.08] tracking-[-0.04em] text-slate-900">Personal audio files only</h2>
+            <p class="mt-4 text-[1.02rem] leading-8 text-slate-700">
+                LizMusic does not provide music, karaoke tracks, backing tracks, shared libraries, download links, or tools for bypassing copyright restrictions. Google Drive, Dropbox, OneDrive, and WebDAV are storage locations you configure or authorize.
+            </p>
+        </section>
+
+        <section class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <a href="/google-drive-music-player-android.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <h2 class="text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Google Drive</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Play audio files stored in your own Google Drive account.</p>
+            </a>
+            <a href="/dropbox-music-player-android.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <h2 class="text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Dropbox</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Use LizMusic as a Dropbox music player for your own folders.</p>
+            </a>
+            <a href="/onedrive-music-player-android.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <h2 class="text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">OneDrive</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Connect Microsoft OneDrive music files to Android playback.</p>
+            </a>
+            <a href="/webdav-music-player-android.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <h2 class="text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">WebDAV</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Use NAS, self-hosted, or WebDAV-compatible music libraries.</p>
+            </a>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.15rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Choose the right listening workflow</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-3">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Cloud first</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Good when your music library already lives in Google Drive, Dropbox, OneDrive, or WebDAV and you want access across devices.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Local first</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Best for predictable playback, no sign-in flow, and music stored directly on the Android device.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Hybrid</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Use cloud storage for your full library and offline cache for albums you need when connectivity drops.</p>
+                </article>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="/local-vs-cloud-music-player-android.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">Compare local and cloud</a>
+                <a href="/personal-audio-library-android.html" class="inline-flex rounded-xl border border-slate-300 px-6 py-3 text-[1rem] font-bold text-slate-800 transition-colors hover:border-primary/50">Personal audio library</a>
+                <a href="/help.html" class="inline-flex rounded-xl border border-slate-300 px-6 py-3 text-[1rem] font-bold text-slate-800 transition-colors hover:border-primary/50">Open help center</a>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.15rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Cloud and WebDAV guides</h2>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                <a href="/what-is-webdav.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">What is WebDAV?</a>
+                <a href="/how-to-create-a-webdav-server.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">How to create a WebDAV server</a>
+                <a href="/google-drive-vs-dropbox-vs-onedrive-for-music.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">Google Drive vs Dropbox vs OneDrive</a>
+                <a href="/is-cloud-music-playback-private.html" class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">Is cloud music playback private?</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

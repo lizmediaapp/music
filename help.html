@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large">
+    <title>LizMusic Help Center</title>
+    <meta name="description" content="Get LizMusic help for Google Drive, Dropbox, WebDAV, OneDrive, and local music libraries. Find setup guides, troubleshooting steps, FAQ answers, and contact options.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/help.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="LizMusic Help Center">
+    <meta property="og:description" content="Setup guides and troubleshooting for Google Drive, Dropbox, WebDAV, OneDrive, local files, and LizMusic support.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/help.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LizMusic Help Center">
+    <meta name="twitter:description" content="Learn how to connect your own Google Drive, Dropbox, WebDAV, OneDrive, and local music libraries in LizMusic.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "LizMusic Help Center",
+        "url": "https://music.lizmediaapp.com/help.html",
+        "description": "Setup and troubleshooting hub for LizMusic local files, Google Drive, Dropbox, WebDAV, OneDrive, offline music, and lyrics workflows.",
+        "hasPart": [
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/help-google-drive.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/help-dropbox.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/help-webdav.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/help-onedrive.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/help-local.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/features.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/cloud-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/personal-audio-library-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/does-lizmusic-upload-my-music.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/what-is-webdav.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/how-to-use-webdav-on-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/local-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/google-drive-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/dropbox-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/local-vs-cloud-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/offline-music-player-android.html"},
+          {"@type": "WebPage", "url": "https://music.lizmediaapp.com/android-music-player-with-lyrics.html"}
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <header class="fixed left-0 right-0 top-5 z-40 px-4 sm:px-6">
+        <div class="mx-auto flex h-[86px] max-w-[1400px] items-center justify-between rounded-[2rem] border border-[#efe3d7] bg-white/94 px-6 shadow-[0_22px_60px_-38px_rgba(106,74,47,0.35)] backdrop-blur-xl sm:px-8 lg:px-10">
+            <a href="/" class="flex items-center gap-3 transition-opacity hover:opacity-90">
+                <img src="./image/lizmusic-logo.png" alt="LizMusic" class="h-12 w-12 rounded-2xl object-contain">
+                <span class="text-[2rem] font-extrabold tracking-[-0.03em] text-[#141414]">LizMusic</span>
+            </a>
+            <nav class="hidden items-center gap-10 lg:flex">
+                <a href="/" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Home</a>
+                <a href="/features.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Features</a>
+                <a href="/help.html" class="text-[1.05rem] font-medium text-primary">Help</a>
+                <a href="/privacy-plain.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Privacy</a>
+                <a href="/terms-plain.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Terms</a>
+            </nav>
+            <a href="open-app.html?target=home&source=help-center-header" class="inline-flex min-w-[148px] items-center justify-center rounded-[1.1rem] bg-[#f47c20] px-6 py-4 text-base font-bold text-white shadow-[0_16px_32px_-22px_rgba(244,124,32,0.8)] transition-transform hover:-translate-y-0.5">
+                Get App
+            </a>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-6 pb-12 pt-40">
+        <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+                <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Help Center</p>
+                <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Get help with your own Google Drive, Dropbox, WebDAV, OneDrive, and local music setup</h1>
+                <p class="mt-4 max-w-3xl text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                    LizMusic is built for personal music libraries. This help center explains how to connect your own storage,
+                    where to look when playback or authorization fails, and how to contact us when you still need support.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+                    <span class="rounded-full bg-orange-100 px-4 py-2 text-orange-700">WebDAV and NAS help</span>
+                    <span class="rounded-full bg-blue-100 px-4 py-2 text-blue-700">Google Drive authorization</span>
+                    <span class="rounded-full bg-indigo-100 px-4 py-2 text-indigo-700">Dropbox authorization</span>
+                    <span class="rounded-full bg-sky-100 px-4 py-2 text-sky-700">OneDrive authorization</span>
+                    <span class="rounded-full bg-emerald-100 px-4 py-2 text-emerald-700">Local files and scanning</span>
+                </div>
+            </div>
+            <aside class="rounded-3xl bg-slate-900 px-8 py-8 text-white shadow-xl">
+                <h2 class="text-2xl font-extrabold">Before you start</h2>
+                <ul class="mt-5 space-y-4 text-[0.98rem] leading-8 text-slate-300">
+                    <li>LizMusic connects to storage accounts and servers that you already own or configure.</li>
+                    <li>We do not provide public WebDAV servers, shared accounts, or hosted music libraries.</li>
+                    <li>Third-party services such as Google Drive, Dropbox, Microsoft OneDrive, and NAS vendors keep their own terms and policies.</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <a href="/help-google-drive.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Guide</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Google Drive connection help</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Authorize your own Google account, choose a My Drive folder, and recover from common connection or playback issues.</p>
+            </a>
+            <a href="/help-webdav.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Guide</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">WebDAV and NAS setup</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Learn which WebDAV details LizMusic needs and how to sanity-check your NAS or self-hosted setup.</p>
+            </a>
+            <a href="/help-dropbox.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Guide</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Dropbox connection help</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Authorize your own Dropbox account, select a music folder, and recover from common playback or access issues.</p>
+            </a>
+            <a href="/help-onedrive.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Guide</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">OneDrive connection help</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Follow the sign-in flow, folder selection tips, and common recovery steps after authorization expires.</p>
+            </a>
+            <a href="/help-local.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Guide</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Local files help</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Review storage access, scanning basics, and what to check when local music does not appear.</p>
+            </a>
+            <a href="/personal-audio-library-android.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Policy</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Personal audio library</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Understand which personal audio files fit LizMusic, including your own recordings and files you have permission to use.</p>
+            </a>
+            <a href="/does-lizmusic-upload-my-music.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Privacy</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Does LizMusic upload my music?</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Review how local and cloud file access works and what LizMusic does not provide.</p>
+            </a>
+            <a href="/help-faq.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">FAQ</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Common questions</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Find quick answers about supported storage types, setup ownership, playback, and troubleshooting.</p>
+            </a>
+            <a href="/help-feedback.html" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">Support</p>
+                <h2 class="mt-4 text-[1.45rem] font-extrabold tracking-[-0.03em] text-slate-900">Feedback and contact</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Find the best way to report a bug, suggest a feature, or share the details we need to help faster.</p>
+            </a>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.15rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Popular LizMusic reading paths</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-600">
+                Use these paths when you already know the storage type or listening workflow you care about. They connect support pages with the feature pages search visitors most often need next.
+            </p>
+            <div class="mt-6 grid gap-5 md:grid-cols-3">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Cloud library path</h3>
+                    <ol class="mt-4 space-y-3 text-[0.98rem] font-semibold text-slate-700">
+                        <li><a href="/help-google-drive.html" class="text-primary hover:underline">1. Google Drive help</a></li>
+                        <li><a href="/help-dropbox.html" class="text-primary hover:underline">2. Dropbox help</a></li>
+                        <li><a href="/cloud-music-player-android.html" class="text-primary hover:underline">3. Cloud music player overview</a></li>
+                        <li><a href="/local-vs-cloud-music-player-android.html" class="text-primary hover:underline">4. Compare local and cloud</a></li>
+                    </ol>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Self-hosted music path</h3>
+                    <ol class="mt-4 space-y-3 text-[0.98rem] font-semibold text-slate-700">
+                        <li><a href="/help-webdav.html" class="text-primary hover:underline">1. WebDAV setup help</a></li>
+                        <li><a href="/webdav-music-player-android.html" class="text-primary hover:underline">2. WebDAV music player overview</a></li>
+                        <li><a href="/help-faq.html" class="text-primary hover:underline">3. Common setup questions</a></li>
+                    </ol>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Offline listening path</h3>
+                    <ol class="mt-4 space-y-3 text-[0.98rem] font-semibold text-slate-700">
+                        <li><a href="/help-local.html" class="text-primary hover:underline">1. Local files help</a></li>
+                        <li><a href="/local-music-player-android.html" class="text-primary hover:underline">2. Local music player overview</a></li>
+                        <li><a href="/offline-music-player-android.html" class="text-primary hover:underline">3. Offline music player overview</a></li>
+                    </ol>
+                </article>
+            </div>
+            <div class="mt-6">
+                <a href="/features.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">
+                    Open feature overview
+                </a>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.15rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Quick answers</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Do I need a Google account for Google Drive?</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Yes. Google Drive access uses your own Google account and only works after you authorize LizMusic to read the folder you choose.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Do I need a Dropbox account?</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Yes. Dropbox playback uses your own Dropbox account and files. LizMusic does not provide shared Dropbox storage or hosted music.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Does LizMusic include a WebDAV server?</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">No. LizMusic is a player client. You bring your own WebDAV-compatible server, NAS, or hosted storage.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Do I need a Microsoft account for OneDrive?</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Yes. OneDrive access uses your own Microsoft account and follows Microsoft's authorization flow.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Can I use local files only?</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Yes. LizMusic supports local playback without WebDAV or OneDrive if your music already lives on the device.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold tracking-[-0.03em] text-slate-900">Where should I go if playback fails?</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Start with the WebDAV or OneDrive help page, then contact us with screenshots and the failing storage type if the issue remains.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 px-8 py-10 text-white">
+            <h2 class="text-3xl font-extrabold">Need detailed support?</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+                If the guides do not solve your issue, send us the storage type, the action you were taking, and what you expected to happen.
+                We can usually help much faster when you include the exact error message or a screenshot.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="/help-feedback.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">Open feedback guide</a>
+                <a href="mailto:lizmediaapp@gmail.com" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">Email support</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-[#eee2d7] bg-white/88 py-10 px-6">
+        <div class="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 text-[0.96rem] text-[#7a7a7a] sm:flex-row">
+            <p>&copy; 2026 Liz Media. All rights reserved.</p>
+            <nav class="flex flex-wrap gap-6">
+                <a href="/features.html" class="hover:text-primary">Features</a>
+                <a href="/help-google-drive.html" class="hover:text-primary">Google Drive Help</a>
+                <a href="/help-dropbox.html" class="hover:text-primary">Dropbox Help</a>
+                <a href="/help-webdav.html" class="hover:text-primary">WebDAV Help</a>
+                <a href="/help-onedrive.html" class="hover:text-primary">OneDrive Help</a>
+                <a href="/cloud-music-player-android.html" class="hover:text-primary">Cloud Music</a>
+                <a href="/help-local.html" class="hover:text-primary">Local Files Help</a>
+                <a href="/help-faq.html" class="hover:text-primary">FAQ</a>
+                <a href="/help-feedback.html" class="hover:text-primary">Feedback</a>
+                <a href="/privacy-plain.html" class="hover:text-primary">Privacy Policy</a>
+                <a href="/terms-plain.html" class="hover:text-primary">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large">
+    <title>LizMusic Features for Android Music Libraries</title>
+    <meta name="description" content="Explore LizMusic features for Android: local playback, WebDAV, OneDrive, offline cache, lyrics, playlists, Bluetooth controls, and equalizer tools.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/features.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="LizMusic Features for Android Music Libraries">
+    <meta property="og:description" content="See how LizMusic handles local files, WebDAV servers, OneDrive playback, offline listening, local lyrics files, playlists, and car-friendly controls.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/features.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LizMusic Features for Android Music Libraries">
+    <meta name="twitter:description" content="Local playback, WebDAV, OneDrive, offline cache, local lyrics files, playlists, and Bluetooth-friendly listening in one Android music player.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style></head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <header class="fixed left-0 right-0 top-5 z-40 px-4 sm:px-6">
+    <div class="mx-auto flex h-[86px] max-w-[1400px] items-center justify-between rounded-[2rem] border border-[#efe3d7] bg-white/94 px-6 shadow-[0_22px_60px_-38px_rgba(106,74,47,0.35)] backdrop-blur-xl sm:px-8 lg:px-10">
+        <a href="/" class="flex items-center gap-3 transition-opacity hover:opacity-90">
+            <img src="./image/lizmusic-logo.png" alt="LizMusic" class="h-12 w-12 rounded-2xl object-contain">
+            <span class="text-[2rem] font-extrabold tracking-[-0.03em] text-[#141414]">LizMusic</span>
+        </a>
+        <nav class="hidden items-center gap-10 lg:flex">
+            <a href="/" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Home</a>
+            <a href="/features.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Features</a>
+            <a href="/help.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Help</a>
+            <a href="/privacy-plain.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Privacy</a>
+            <a href="/terms-plain.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Terms</a>
+        </nav>
+        <a href="open-app.html?target=home&source=seo-features-hero" class="inline-flex min-w-[148px] items-center justify-center rounded-[1.1rem] bg-[#f47c20] px-6 py-4 text-base font-bold text-white shadow-[0_16px_32px_-22px_rgba(244,124,32,0.8)] transition-transform hover:-translate-y-0.5">
+            Get App
+        </a>
+    </div>
+</header>
+
+    <main class="mx-auto max-w-5xl px-6 pt-40 pb-12">
+        <div class="max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Features</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Explore LizMusic features for local, cloud-connected, and offline Android listening</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                This page collects the core LizMusic feature paths in one place so you can understand how the app fits local music libraries, WebDAV servers, OneDrive playback, offline cache, playlists, local lyrics files, and Bluetooth-friendly listening.
+            </p>
+        </div>
+
+        <section class="mt-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.35rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Choose the right reading path</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-3">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">If your library lives on your own server</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Start with the pages that explain WebDAV playback and how LizMusic fits self-hosted or NAS-style music storage.</p>
+                    <div class="mt-4 flex flex-col gap-2 text-[0.98rem] font-semibold">
+                        <a href="/webdav-music-player-android.html" class="text-primary hover:underline">WebDAV music player for Android</a>
+                        <a href="/features.html" class="text-primary hover:underline">Full feature overview</a>
+                    </div>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">If you use OneDrive for music</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Focus on the cloud-library pages that explain OneDrive playback and how playlists or local lyrics files fit that workflow.</p>
+                    <div class="mt-4 flex flex-col gap-2 text-[0.98rem] font-semibold">
+                        <a href="/onedrive-music-player-android.html" class="text-primary hover:underline">OneDrive music player for Android</a>
+                        <a href="/android-music-player-with-lyrics.html" class="text-primary hover:underline">Android music player with lyrics</a>
+                    </div>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">If offline playback matters most</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Use the offline and organization guides when you care more about ready-to-play files than always-on streaming.</p>
+                    <div class="mt-4 flex flex-col gap-2 text-[0.98rem] font-semibold">
+                        <a href="/offline-music-player-android.html" class="text-primary hover:underline">Offline music player for Android</a>
+                        <a href="/android-music-player-with-lyrics.html" class="text-primary hover:underline">Local lyrics, playlists, and library tools</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-[2.35rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Core LizMusic pages</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-600">
+                Start here if you want a clear overview of what the Android app actually does and which playback workflow fits your own music collection.
+            </p>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                <a href="/webdav-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">WebDAV music player for Android</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Understand how LizMusic fits self-hosted storage, NAS libraries, and WebDAV-compatible servers.</p>
+                </a>
+                <a href="/local-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Local music player for Android</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Use LizMusic for your own local files, playlists, favorites, lyrics, and offline-friendly listening.</p>
+                </a>
+                <a href="/google-drive-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Google Drive music player for Android</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Connect your own Google Drive music library to a player-focused Android workflow.</p>
+                </a>
+                <a href="/onedrive-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">OneDrive music player for Android</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">See how OneDrive-backed playback works in a dedicated Android music-player workflow.</p>
+                </a>
+                <a href="/offline-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Offline music player for Android</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Learn why local playback and offline cache matter for travel, weak signal, and everyday listening.</p>
+                </a>
+                <a href="/android-music-player-with-lyrics.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Android music player with lyrics</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Explore how local lyrics files, favorites, playlists, and album browsing fit your own library workflow.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 px-8 py-10 text-white">
+            <h2 class="text-3xl font-extrabold">Try these features in the Android app</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+                LizMusic combines local playback, WebDAV servers, OneDrive support, offline cache, playlists, local lyrics files, Bluetooth tools, and listening controls in one Android music player.
+            </p>
+            <div class="mt-6">
+          <a href="open-app.html?target=home&source=seo-features-cta" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">
+                    Download on Google Play
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-[#eee2d7] bg-white/88 py-10 px-6">
+        <div class="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 text-[0.96rem] text-[#7a7a7a] sm:flex-row">
+            <p>&copy; 2026 Liz Media. All rights reserved.</p>
+            <nav class="flex gap-6">
+                <a href="/help.html" class="hover:text-primary">Help Center</a>
+                <a href="/privacy-plain.html" class="hover:text-primary">Privacy Policy</a>
+                <a href="/terms-plain.html" class="hover:text-primary">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
+
+

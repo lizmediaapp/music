@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Google Drive Help - LizMusic</title>
+    <meta name="description" content="Learn how to authorize your own Google Drive account, choose a folder from My Drive, and troubleshoot Google Drive playback in LizMusic.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/help-google-drive.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="Google Drive Help - LizMusic">
+    <meta property="og:description" content="Authorization and troubleshooting help for Google Drive playback in LizMusic.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/help-google-drive.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Google Drive Help - LizMusic">
+    <meta name="twitter:description" content="Connect your own Google Drive music folder to LizMusic and recover from common authorization or playback issues.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <main class="mx-auto max-w-5xl px-6 py-12">
+        <a href="/help.html" class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:text-primary">Back to Help Center</a>
+        <div class="mt-8 max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Google Drive Help</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Connect LizMusic to your own Google Drive music folder</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic can browse and play music from your own Google Drive after you sign in with your Google account and choose a folder from My Drive.
+                The app does not create Google accounts or provide shared libraries.
+            </p>
+        </div>
+
+        <section class="mt-10 grid gap-5 md:grid-cols-2">
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">What you need</h2>
+                <ul class="mt-4 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                    <li>A Google account with access to Google Drive.</li>
+                    <li>Music files already stored in a folder inside your own My Drive.</li>
+                    <li>A browser or Google sign-in flow on your device to complete authorization.</li>
+                </ul>
+            </article>
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Typical setup flow</h2>
+                <ol class="mt-4 list-decimal space-y-3 pl-5 text-[0.98rem] leading-8 text-slate-600">
+                    <li>Open LizMusic and go to Settings, then Storage, then Add Storage.</li>
+                    <li>Select Google Drive.</li>
+                    <li>Sign in with your own Google account and approve the requested access.</li>
+                    <li>Choose the music folder you want LizMusic to use from My Drive.</li>
+                    <li>Save the storage and start browsing or playback from that folder.</li>
+                </ol>
+            </article>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">Common issues</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Authorization expired or revoked</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Reconnect the Google Drive storage in LizMusic if you revoked access in your Google account or the session is no longer valid.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Wrong account selected</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Make sure the Google sign-in flow uses the account that actually contains the music folder you want to browse.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">No files appear</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Confirm the selected folder contains supported audio files and that the files are still inside My Drive rather than a location you did not grant access to.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Playback or import fails later</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Check whether the file was moved, deleted, renamed, or whether your Google Drive authorization needs to be refreshed inside LizMusic.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 px-8 py-10 text-white">
+            <h2 class="text-3xl font-extrabold">Need Google account help?</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+                For Google account creation, password recovery, billing, or Google Drive service issues, use Google's own support resources.
+                LizMusic only handles the client-side playback connection to the folder you authorize.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="/help-feedback.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">Contact support</a>
+                <a href="/privacy-plain.html" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">Read privacy policy</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
