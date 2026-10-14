@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large">
+    <title>WebDAV and NAS Help - LizMusic</title>
+    <meta name="description" content="Set up your own WebDAV or NAS music library in LizMusic. Learn the required connection details and common troubleshooting steps.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/help-webdav.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="WebDAV and NAS Help - LizMusic">
+    <meta property="og:description" content="Learn how to connect your own WebDAV-compatible storage to LizMusic.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/help-webdav.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="WebDAV and NAS Help - LizMusic">
+    <meta name="twitter:description" content="Connection tips and troubleshooting for WebDAV, NAS, and self-hosted music libraries.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <main class="mx-auto max-w-5xl px-6 py-12">
+        <a href="/help.html" class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:text-primary">Back to Help Center</a>
+        <div class="mt-8 max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">WebDAV Help</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Connect LizMusic to your own WebDAV or NAS music library</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic can play music from WebDAV-compatible storage that you already manage. That might be a NAS, a home server,
+                or another hosted WebDAV service under your control.
+            </p>
+        </div>
+
+        <section class="mt-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">What you need</h2>
+            <ul class="mt-5 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                <li>A WebDAV-compatible server that you own or administer.</li>
+                <li>The server URL, including the correct path and port if your setup uses a custom one.</li>
+                <li>A valid username and password or other credentials supported by that server.</li>
+                <li>A music folder on that server with files you are allowed to access.</li>
+            </ul>
+        </section>
+
+        <section class="mt-12 grid gap-5 md:grid-cols-2">
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Typical setup flow</h2>
+                <ol class="mt-4 list-decimal space-y-3 pl-5 text-[0.98rem] leading-8 text-slate-600">
+                    <li>Enable WebDAV on your NAS or server first.</li>
+                    <li>Verify that the WebDAV URL works in another trusted client before adding it to LizMusic.</li>
+                    <li>In LizMusic, go to Settings, then Storage, then Add Storage.</li>
+                    <li>Select WebDAV and enter the server address, username, and password.</li>
+                    <li>Save the storage and test browsing or playback from a known folder.</li>
+                </ol>
+            </article>
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Important notes</h2>
+                <ul class="mt-4 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                    <li>LizMusic does not set up WebDAV for you. It only connects to a server you provide.</li>
+                    <li>If your server uses self-signed certificates or network restrictions, fix those on the server side first.</li>
+                    <li>Keep the path and port consistent with the endpoint your NAS or server actually exposes.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">Common problems</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">401 or 403 errors</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Double-check your username, password, and permissions for the target folder. Also confirm you are using the correct WebDAV path.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Server not found</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Make sure the URL is reachable from your phone and that the server is exposed to the network you are currently on.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Playback starts slowly</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Check server performance, internet quality, and file size. Offline cache can help if your connection is unstable.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">No music appears</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Verify that the remote folder actually contains supported audio files and that your account can read them.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 px-8 py-10 text-white">
+            <h2 class="text-3xl font-extrabold">Need vendor-specific instructions?</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+                If you are configuring a Synology, QNAP, Windows, or another third-party server, use that provider's official
+                documentation for the server-side steps first, then return to LizMusic for the client-side connection.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="/webdav-music-player-android.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">Read product overview</a>
+                <a href="/help-feedback.html" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">Contact support</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

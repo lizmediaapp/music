@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large" />
+    <title>LizMusic - Your Music, Everywhere</title>
+    <meta name="description" content="LizMusic is an Android player for personal audio files, Google Drive, Dropbox, WebDAV, OneDrive, offline cache, playlists, lyrics, and car controls." />
+    <meta property="og:title" content="LizMusic - Your Music, Everywhere" />
+    <meta property="og:description" content="Android player for personal audio files, Google Drive, Dropbox, WebDAV servers, OneDrive playback, offline cache, playlists, lyrics, and car controls." />
+    <meta property="og:url" content="https://music.lizmediaapp.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LizMusic - Your Music, Everywhere" />
+    <meta name="twitter:description" content="Android player for personal audio files, Google Drive, Dropbox, WebDAV servers, OneDrive playback, offline cache, playlists, lyrics, and car controls." />
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png" />
+    <link rel="canonical" href="https://music.lizmediaapp.com/" />
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico"/>
+    <!-- Non-blocking font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "LizMusic",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Android",
+        "url": "https://music.lizmediaapp.com/",
+        "image": "https://music.lizmediaapp.com/image/lizmusic-logo.png",
+        "description": "LizMusic is an Android player for personal audio files users own, created, recorded, or have permission to use, with Google Drive, Dropbox, WebDAV, OneDrive, offline cache, playlists, local lyrics files, and library management.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Liz Media",
+          "url": "https://lizmediaapp.com/"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Liz Music",
+        "url": "https://music.lizmediaapp.com/",
+        "logo": "https://music.lizmediaapp.com/image/lizmusic-logo.png",
+        "sameAs": [
+          "https://lizmediaapp.com/"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "LizMusic",
+        "url": "https://music.lizmediaapp.com/",
+        "description": "Official LizMusic website for the Android music player."
+      }
+    </script>
+  <script type="module" crossorigin src="/assets/index-tMsKESAG.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-hgIyJMmJ.css">
+</head>
+<body class="bg-bg-light text-text-main antialiased selection:bg-brand-orange/30">
+    <div id="root"></div>
+</body>
+</html>

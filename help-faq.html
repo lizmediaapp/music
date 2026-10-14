@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large">
+    <title>LizMusic FAQ</title>
+    <meta name="description" content="Read the LizMusic FAQ for quick answers about WebDAV, OneDrive, local music files, playback, permissions, privacy, and support.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/help-faq.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="LizMusic FAQ">
+    <meta property="og:description" content="Quick answers about WebDAV, OneDrive, local files, playback, and LizMusic support.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/help-faq.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LizMusic FAQ">
+    <meta name="twitter:description" content="Frequently asked questions about setup, storage ownership, playback, and support in LizMusic.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <main class="mx-auto max-w-6xl px-6 py-12">
+        <a href="/help.html" class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:text-primary">Back to Help Center</a>
+        <div class="mt-8 max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">FAQ</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Quick answers about how LizMusic works</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                These answers are designed to cover the most common setup, playback, and library questions before you need a longer troubleshooting guide.
+            </p>
+        </div>
+
+        <section class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <a href="#storage" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">Category</p>
+                <h2 class="mt-3 text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Storage</h2>
+            </a>
+            <a href="#library" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">Category</p>
+                <h2 class="mt-3 text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Library</h2>
+            </a>
+            <a href="#playback" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">Category</p>
+                <h2 class="mt-3 text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Playback</h2>
+            </a>
+            <a href="#privacy-support" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">Category</p>
+                <h2 class="mt-3 text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Privacy and support</h2>
+            </a>
+        </section>
+
+        <section id="storage" class="mt-12">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">Storage</h2>
+            <div class="mt-6 grid gap-5">
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Does LizMusic provide free WebDAV servers?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">No. LizMusic is a music player client. You connect it to your own WebDAV-compatible storage or server.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Do I need to create my own OneDrive account?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Yes. If you want OneDrive playback, you need your own Microsoft account and your own OneDrive storage.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Can I use the app without cloud storage?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Yes. LizMusic supports local music playback on Android devices without requiring WebDAV or OneDrive.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Who manages the server-side or account-side setup?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">You do. LizMusic handles playback and library access on the client side, while the underlying server or storage account remains your responsibility.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why does LizMusic ask for storage or media access permission?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Local playback depends on Android permission to read your audio files, artwork, and related media metadata. Without that access, the app cannot build or refresh your local library correctly.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Can I switch between local, WebDAV, and OneDrive storage later?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Yes. You can add, remove, or change storage locations in the app settings. The supported path depends on the storage type you configure.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="library" class="mt-14">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">Library</h2>
+            <div class="mt-6 grid gap-5">
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">My music files do not show up. What should I check first?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Start with permissions, then confirm the files are supported audio formats, then refresh or rescan the library. If you are using cloud storage, verify the target folder really contains the music files you expect.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">How do I add new music to the app?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Add the files to your device or supported storage first, then refresh or rescan in LizMusic. For cloud storage, make sure the newly added files are inside the folder path your storage configuration actually uses.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why do I see duplicate songs?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Duplicate tracks usually mean the same files are being discovered from more than one storage path, or the same folder was added twice. Review your configured storages and remove overlapping sources.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why is album art missing or incorrect?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Cover art usually depends on embedded metadata or image files that match your library organization. If metadata is incomplete or inconsistent, LizMusic may show missing or unexpected artwork until the library is rescanned.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Can LizMusic work with local lyrics files and playlists?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Yes. LizMusic supports local-library listening features such as playlists, favorites, and local lyrics workflows alongside supported storage types.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="playback" class="mt-14">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">Playback</h2>
+            <div class="mt-6 grid gap-5">
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why is there no sound when I press play?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Check device volume, Bluetooth routing, and whether another app is taking audio focus. If the file opens but stays silent, try another track to rule out file-specific issues.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why does playback stop after the screen turns off?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Many Android devices limit background activity aggressively. Review battery optimization and background playback permissions for LizMusic if playback stops when the app is no longer foregrounded.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">How does Bluetooth playback work?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Pair the Bluetooth device through Android first, then start playback in LizMusic. Audio output and many basic controls should follow the system-level Bluetooth connection.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">What if OneDrive playback suddenly fails?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">The most common causes are expired authorization, the wrong Microsoft account, or a file that was moved or deleted. Reconnecting the OneDrive storage is often the first recovery step.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">What if WebDAV playback is slow or fails intermittently?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">That usually points to network quality, server performance, or remote permissions rather than the player UI itself. Test the same server path from another trusted client to confirm whether the issue is server-side.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Does the app support offline-friendly listening?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Yes. Local playback works offline by design, and cloud-backed listening can still benefit from offline cache or already-downloaded files depending on your workflow.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why is the playback notification missing?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Check both LizMusic notification settings and Android system notification permission settings. On some devices, lock-screen visibility or battery restrictions can also hide or interrupt the playback notification.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why do headphone or Bluetooth control buttons not respond?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Confirm the external device is connected correctly and review the playback or external-device related settings in the app. Some accessories also depend on device-specific button mappings outside LizMusic.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Does LizMusic include a sleep timer?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Yes. LizMusic includes a sleep-timer workflow in the player controls so playback can stop automatically after a selected time.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Does the app support equalizer or audio effects?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">LizMusic can work with the device audio-effects path when the Android device provides one. The exact equalizer behavior depends on the device and system audio stack.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="privacy-support" class="mt-14">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">Privacy and support</h2>
+            <div class="mt-6 grid gap-5">
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">How does LizMusic handle my data?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">LizMusic is a player client. Your music remains in your own local storage or the third-party storage accounts you connect. For the broader privacy picture, refer to the published privacy policy.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">What should I send when I report a bug?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Tell us the storage type, the device, the action you were taking, and the exact error message or a screenshot if possible. That context usually shortens support time significantly.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">When should I contact the storage provider instead of LizMusic?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">If the issue is account recovery, billing, password reset, server provisioning, or service availability, contact the underlying provider. LizMusic handles the playback client side, not the external service itself.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Can support give me a server or account to test with?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">No. LizMusic support does not distribute public WebDAV servers, shared accounts, or third-party music libraries. Troubleshooting focuses on your own setup.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">Why does the app seem to use more battery during long sessions?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Battery use can increase with long screen-on sessions, Bluetooth playback, cloud-backed streaming, or aggressive rescanning. Local playback and already-cached files are usually the lightest path for extended listening.</p>
+                </article>
+                <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                    <h3 class="text-[1.3rem] font-extrabold tracking-[-0.03em] text-slate-900">What if the app crashes repeatedly?</h3>
+                    <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Try clearing cache, checking available storage, restarting the device, and making sure you are on a current build. If the crash continues, send support the failing action, device model, and any error details you can capture.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 px-8 py-10 text-white">
+            <h2 class="text-3xl font-extrabold">Need more than a quick answer?</h2>
+            <p class="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+                Use the dedicated setup guides when you want step-by-step help, and use the support page when you already know the exact failure point.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="/help-webdav.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">WebDAV guide</a>
+                <a href="/help-onedrive.html" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">OneDrive guide</a>
+                <a href="/help-local.html" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">Local files help</a>
+                <a href="/help-feedback.html" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">Feedback and support</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

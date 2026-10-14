@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // canonical-host-redirect
+    (function () {
+      var canonicalHost = 'music.lizmediaapp.com';
+      var host = window.location.hostname.toLowerCase();
+      var path = window.location.pathname || '/';
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+
+      if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+        return;
+      }
+
+      var targetHost = host;
+      var shouldRedirect = false;
+
+      if (host === 'lizmediaapp.github.io') {
+        targetHost = canonicalHost;
+        path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+        shouldRedirect = true;
+      } else if (host === 'www.music.lizmediaapp.com') {
+        targetHost = canonicalHost;
+        shouldRedirect = true;
+      } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+        targetHost = canonicalHost;
+        path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+        shouldRedirect = true;
+      } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+        path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+        shouldRedirect = true;
+      } else if (host !== canonicalHost) {
+        return;
+      }
+
+      if (path === '/index.html') {
+        path = '/';
+        shouldRedirect = true;
+      } else if (/\/index\.html$/.test(path)) {
+        path = path.replace(/\/index\.html$/, '/');
+        shouldRedirect = true;
+      }
+
+      if (host === canonicalHost && window.location.protocol !== 'https:') {
+        shouldRedirect = true;
+      }
+
+      var target = 'https://' + targetHost + path + search + hash;
+      if (shouldRedirect && target !== window.location.href) {
+        window.location.replace(target);
+      }
+    })();
+  </script>
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Privacy Policy - LizMusic</title>
+  <meta name="description" content="Read the LizMusic Privacy Policy to understand how local music files, Google Drive, Dropbox, WebDAV, OneDrive, analytics, crash reporting, and app settings are handled.">
+  <link rel="canonical" href="https://music.lizmediaapp.com/privacy-plain.html">
+  <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+  <link rel="stylesheet" href="./assets/static-tailwind.css">
+  <meta property="og:title" content="Privacy Policy - LizMusic">
+  <meta property="og:description" content="Read the LizMusic Privacy Policy to understand how local music files, Google Drive, Dropbox, WebDAV, OneDrive, analytics, crash reporting, and app settings are handled.">
+  <meta property="og:url" content="https://music.lizmediaapp.com/privacy-plain.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Privacy Policy - LizMusic">
+  <meta name="twitter:description" content="Read the LizMusic Privacy Policy to understand how local music files, Google Drive, Dropbox, WebDAV, OneDrive, analytics, crash reporting, and app settings are handled.">
+  <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Privacy Policy - LizMusic","url":"https://music.lizmediaapp.com/privacy-plain.html","description":"Read the LizMusic Privacy Policy to understand how local music files, Google Drive, Dropbox, WebDAV, OneDrive, analytics, crash reporting, and app settings are handled.","isPartOf":{"@type":"WebSite","name":"LizMusic","url":"https://music.lizmediaapp.com/"}}</script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+<main class="max-w-4xl mx-auto px-6 py-12">
+<h1 class="text-4xl md:text-5xl font-black text-brand-chestnut mb-8">Privacy Policy</h1>
+<p class="text-sm text-text-muted mb-8">Last updated: May 21, 2026</p>
+<p class="text-sm text-text-muted mb-8 font-semibold">Version 1.1.0</p>
+<div class="space-y-8 text-text-muted">
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">1. Introduction</h2>
+<p class="leading-relaxed mb-4">Welcome to LizMusic. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we handle your data when you use our music player application.</p>
+<p class="leading-relaxed font-semibold text-brand-chestnut">IMPORTANT: LizMusic is a music player client application only. We do NOT provide, host, store, stream, or distribute any music content. You must provide your own music files and cloud storage accounts.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">2. Data We Collect and Access</h2>
+<p class="leading-relaxed mb-3">When you use LizMusic, we may access or collect the following information:</p>
+<h3 class="text-xl font-bold text-brand-chestnut mt-4 mb-3">Data Accessed Locally (NOT Uploaded to Servers)</h3>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Music Files and Audio Files:</strong> We access your music files (MP3, FLAC, AAC, etc.) and other audio files stored on your device or cloud storage for playback purposes only. These files remain on YOUR device or YOUR cloud storage and are NEVER uploaded to our servers</li>
+<li>
+<strong>Album Artwork and Embedded Images:</strong> We access album cover images embedded in your music files or stored as separate image files (JPG, PNG) in your music folders for display purposes. These images are processed locally and not uploaded</li>
+<li>
+<strong>Music Library Metadata:</strong> Information extracted from your music files including artist, album, title, duration, genre, and other ID3 tags - stored locally on YOUR device only</li>
+<li>
+<strong>Files and Documents (Music-Related Only):</strong> We may access playlist files (.m3u, .pls), lyrics files (.lrc), and music-related documents in your music folders. We do NOT access or process your personal documents, photos unrelated to music, videos, or other non-music files</li>
+<li>
+<strong>Playback History:</strong> Tracks you&#x27;ve played, playlists, and listening preferences (stored locally on your device, NEVER uploaded to our servers)</li>
+<li>
+<strong>Cloud Storage Credentials and Authorization Tokens:</strong> If you choose to use supported cloud integration (such as WebDAV-compatible servers, OneDrive, Google Drive, or Dropbox), encrypted connection credentials or OAuth authorization tokens are stored locally on your device</li>
+<li>
+<strong>App Settings:</strong> Your preferences, equalizer settings, customization choices, and feature toggles</li>
+</ul>
+<h3 class="text-xl font-bold text-brand-chestnut mt-4 mb-3">Data Collected/Transmitted</h3>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Pseudonymous Installation and Analytics Identifiers:</strong> Firebase services may assign installation-scoped or pseudonymous identifiers such as Firebase Installation ID and Firebase Analytics identifiers to support analytics, diagnostics, remote configuration, and limited-release feature controls. These identifiers are not your real name or email address</li>
+<li>
+<strong>Account Identifiers from Connected Providers:</strong> If you connect Google Drive, Dropbox, or OneDrive, the provider may return account identifiers such as an account ID, email address, or display name. LizMusic uses this information only to show and manage the connected source, refresh authorization, and provide browsing, import, playback, lyrics, artwork, and offline cache features you request</li>
+<li>
+<strong>Device Information:</strong> Device type, operating system version, app version, audio output device type for compatibility purposes</li>
+<li>
+<strong>Analytics and Diagnostics:</strong> Usage statistics, crash reports, and performance metrics may be collected via Firebase (Google) to improve app stability and user experience. We do NOT upload your music files, and we do NOT intentionally send full listening-history content as part of analytics events</li>
+<li>
+<strong>Ads and Consent Data:</strong> If advertising is enabled in your app build or region, Google Mobile Ads and Google User Messaging Platform may process device, app, network, and consent-related information, and may use advertising identifiers where supported by Android and permitted by your device settings and Google policies</li>
+<li>
+<strong>Network and Connectivity Information:</strong> Network connection type and related diagnostic signals may be processed to improve reliability, playback compatibility, and ad or analytics delivery</li>
+<li>
+<strong>Optional Lyrics Lookup Metadata:</strong> If a limited-release lyrics lookup feature is enabled for your installation and you choose to use it, song metadata such as title, artist, album, or duration may be sent to a third-party lyrics service to try to match lyrics. Any lyrics saved from that feature are cached on your device</li>
+<li>
+<strong>Bluetooth Information:</strong> Connected bluetooth device names and types when using car mode or bluetooth playback features</li>
+<li>
+<strong>Subscription Information:</strong> Purchase records and subscription status for premium features (processed by Google Play)</li>
+</ul>
+<h3 class="text-xl font-bold text-brand-chestnut mt-4 mb-3">Important Clarifications</h3>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Music Files:</strong> We access and play your music files locally. Your music files are NEVER uploaded to our servers or shared with third parties</li>
+<li>
+<strong>Lyrics Files:</strong> LizMusic can read user-provided local lyrics files such as <code>.lrc</code> files stored with your music library. These files remain on your device or your own storage accounts unless you separately choose to use a limited-release lyrics lookup feature</li>
+<li>
+<strong>User IDs and Device IDs:</strong> LizMusic does not require a LizMusic account. Firebase and advertising identifiers are device, app-instance, or installation identifiers. Cloud provider account identifiers are used only after you authorize that provider and only for the connected storage features you choose to use</li>
+<li>
+<strong>Photos and Videos:</strong> While our storage permission may technically allow access to photos and videos on older Android versions (due to READ_EXTERNAL_STORAGE permission limitations), we do NOT access, process, collect, or view your personal photos or videos. We only access music-related images (album artwork)</li>
+<li>
+<strong>Audio Recordings:</strong> We do NOT record audio or access your voice recordings, voice memos, or other recorded content. We only access pre-existing music and audio files that you have stored for playback</li>
+<li>
+<strong>Documents:</strong> We do NOT access your personal documents, PDFs, text files, or other non-music documents. File access is limited to music files and music-related metadata only</li>
+</ul>
+<p class="leading-relaxed mt-3 font-semibold text-brand-chestnut">CRITICAL PRIVACY NOTICE: Your music files, audio content, and personal media NEVER leave your device or personal cloud storage. We are a local music player - core music playback happens on your device. Network traffic is limited to app infrastructure and optional services you choose to use, such as analytics, ads, cloud connections, updates, or limited-release lyrics lookup.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">2a. Google Play Data Safety Alignment</h2>
+<p class="leading-relaxed mb-3">To make our data practices easier to compare with Google Play&#x27;s Data safety form, the main data categories are summarized below:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Device or Other IDs:</strong> Firebase Installation ID, Firebase Analytics identifiers, app instance identifiers, and advertising identifiers may be processed for analytics, diagnostics, remote configuration, consent, ads, fraud prevention, and app reliability</li>
+<li>
+<strong>User IDs and Account Information:</strong> LizMusic has no first-party user account system. If you connect Google Drive, Dropbox, or OneDrive, provider account identifiers may be processed only to manage that connection and access the files you authorize</li>
+<li>
+<strong>App Activity and Diagnostics:</strong> App interactions, feature usage, import/playback events, crash logs, and performance data may be processed to maintain and improve the app. We do not intentionally send full listening-history content or your music library contents as analytics events</li>
+<li>
+<strong>Files, Audio, and Music Metadata:</strong> Audio files, lyrics files, playlists, artwork, filenames, folder paths, and music tags are accessed to browse, import, play, cache, and organize your own library. These files are not uploaded to LizMusic servers</li>
+<li>
+<strong>Purchase Information:</strong> Subscription entitlement and purchase status are processed through Google Play to unlock paid features. Payment details are handled by Google Play, not LizMusic</li>
+<li>
+<strong>Bluetooth Device Information:</strong> Device names, types, and connection state may be processed locally for bluetooth playback, car mode, and external-device compatibility features</li>
+</ul>
+<p class="leading-relaxed mt-3">We do not use your music files, cloud file contents, playlists, lyrics, or listening library to build advertising profiles or to sell data.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">2b. Cloud Storage Authorization and File Access</h2>
+<p class="leading-relaxed mb-3">LizMusic accesses cloud storage only after you explicitly connect a provider. Cloud access is used to browse folders, import library metadata, stream or play audio files, display artwork and lyrics files, and cache selected content on your device when you choose offline features.</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Google Drive:</strong> When you authorize Google Drive, LizMusic may read file and folder names, paths, metadata, and the contents of supported music-related files within the access scope you approve. We do not upload your Google Drive files to LizMusic servers, sell your Google Drive data, or use it for advertising profiles.</li>
+<li>
+<strong>Dropbox:</strong> When you authorize Dropbox, LizMusic may read file and folder names, paths, metadata, and the contents of supported music-related files needed for browsing, import, playback, artwork, lyrics, and offline cache features. We do not upload your Dropbox files to LizMusic servers, sell your Dropbox data, or use it for advertising profiles.</li>
+<li>
+<strong>OneDrive:</strong> When you authorize OneDrive, LizMusic may read file and folder names, paths, metadata, and supported music-related file contents needed to provide the features you request. We do not upload your OneDrive files to LizMusic servers or use them to operate a hosted music catalog.</li>
+<li>
+<strong>WebDAV-Compatible Servers:</strong> When you connect a WebDAV server, LizMusic uses the server address and credentials you provide to browse, read, and play music-related files from that server.</li>
+</ul>
+<p class="leading-relaxed mt-3">You can disconnect a cloud source in the app. OAuth providers may also allow you to revoke LizMusic access from your Google, Dropbox, or Microsoft account settings. After disconnection or revocation, related cloud playback, import, lyrics, artwork, and offline cache features may stop working for that source.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">3. How We Use Your Data</h2>
+<p class="leading-relaxed mb-3">We use your data to:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>Provide and maintain the music playback functionality</li>
+<li>Sync your music library using your own connected cloud storage providers (if you enable cloud features)</li>
+<li>Apply remote configuration, device-specific feature flags, and rollout controls</li>
+<li>Remember your preferences and settings</li>
+<li>Improve app performance, stability, and user experience through analytics</li>
+<li>Diagnose and fix crashes and bugs through automated error reporting</li>
+<li>Monitor app performance and optimize resource usage</li>
+<li>Provide customer support when requested</li>
+<li>Manage subscriptions and process in-app purchases</li>
+<li>Request and store advertising consent where required, and serve ads when enabled</li>
+<li>Deliver app updates and new features</li>
+</ul>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">4. Privacy-First Approach</h2>
+<p class="leading-relaxed mb-3">LizMusic is designed with privacy as a core principle:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Local Storage:</strong> All your music data, playback history, and preferences are stored locally on your device</li>
+<li>
+<strong>Limited Analytics:</strong> We limit analytics and diagnostics to product improvement, stability, and aggregate usage understanding. We do not upload your music files or operate a cloud music catalog</li>
+<li>
+<strong>No Account Required:</strong> You can use LizMusic without creating an account or providing personal information</li>
+<li>
+<strong>Encrypted Credentials:</strong> Cloud storage credentials are encrypted and stored only on your device</li>
+<li>
+<strong>No Data Selling:</strong> We will never sell your personal data to third parties. We do not sell or share your data for targeted advertising purposes</li>
+<li>
+<strong>Minimal Permissions:</strong> We only request permissions that are essential for specific features you choose to use</li>
+<li>
+<strong>Transparent Processing:</strong> Data collection and sharing for analytics, ads, consent, subscriptions, remote configuration, and connected storage features are described in this policy</li>
+<li>
+<strong>No Music Resale or Catalog Profiling:</strong> We do not sell your music files, host your music catalog, or operate a streaming recommendation profile based on your library content</li>
+</ul>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">4a. Data Controller Information</h2>
+<p class="leading-relaxed mb-3">
+<strong>Data Controller:</strong> LizMusic (Individual Developer) is the data controller responsible for your personal data.</p>
+<p class="leading-relaxed mb-3">
+<strong>Contact Information:</strong>
+<br/>Email: lizmediaapp@gmail.com</p>
+<p class="leading-relaxed mb-3">
+<strong>Data Protection Contact:</strong>
+<br/>We do not have a designated Data Protection Officer as we are an individual developer and do not engage in large-scale processing of personal data. For all privacy-related inquiries, data protection questions, or to exercise your rights, please contact us at: lizmediaapp@gmail.com</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">4b. Legal Basis for Processing</h2>
+<p class="leading-relaxed mb-3">We process your personal data based on the following legal grounds:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Contractual Necessity:</strong> Processing is necessary to provide the app functionality and services you request</li>
+<li>
+<strong>Legitimate Interests:</strong> We process data for analytics, crash reporting, and app improvement, which are our legitimate interests that do not override your privacy rights</li>
+<li>
+<strong>Consent:</strong> For optional features like cloud sync, OAuth cloud authorization, shake-to-skip, and analytics, we process data based on your explicit consent</li>
+<li>
+<strong>Legal Obligations:</strong> We may process data to comply with legal requirements and respond to lawful requests from authorities</li>
+</ul>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">4c. Data Retention Policy</h2>
+<p class="leading-relaxed mb-3">We retain your personal data only for as long as necessary to fulfill the purposes outlined in this policy:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Local App Data:</strong> Music library metadata, playback history, and preferences are stored locally on your device and retained until you uninstall the app or manually clear the data</li>
+<li>
+<strong>Analytics Data:</strong> Anonymous usage statistics and crash reports are retained for 12 months, after which they are automatically deleted</li>
+<li>
+<strong>Subscription Records:</strong> Purchase and subscription information is retained for 7 years for accounting and tax purposes</li>
+<li>
+<strong>Support Communications:</strong> Customer support emails and inquiries are retained for 3 years</li>
+<li>
+<strong>Cloud Sync Credentials:</strong> Encrypted cloud storage credentials and OAuth tokens are stored on your device only and deleted when you disconnect the cloud account or uninstall the app</li>
+</ul>
+<p class="leading-relaxed mt-3">You can request deletion of your data at any time by contacting us at lizmediaapp@gmail.com.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">4d. Data Sharing and Third-Party Access</h2>
+<p class="leading-relaxed mb-3">
+<strong>We do not sell your personal data to third parties.</strong> We share limited data only with the following service providers:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Firebase/Google:</strong> Analytics, crash diagnostics, and remote configuration data needed to operate and improve the app (subject to Google&#x27;s privacy policy)</li>
+<li>
+<strong>Google Ads / Consent Services:</strong> If ads are enabled, Google Mobile Ads and Google User Messaging Platform may receive device, app, and consent-related information to serve ads and manage consent flows</li>
+<li>
+<strong>Google Play Services:</strong> Subscription billing and in-app purchase processing</li>
+<li>
+<strong>Supported Cloud Storage Providers:</strong> Only when you explicitly connect your own Google Drive, Dropbox, OneDrive, or WebDAV-compatible storage source</li>
+<li>
+<strong>Optional Lyrics Providers:</strong> If a limited-release lyrics lookup feature is enabled for your installation and you use it, relevant song metadata may be sent to a third-party lyrics provider for matching</li>
+</ul>
+<p class="leading-relaxed mt-3">These third parties are contractually obligated to protect your data and use it only for the purposes we specify. We do not share your music listening habits, playlists, or personal preferences with any third parties.</p>
+<p class="leading-relaxed mt-3 font-semibold text-brand-chestnut">Your Right to Know: You have the right to know whether your personal data is being shared and with whom. The complete list of third parties is provided above.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">5. Cloud Storage Integration</h2>
+<p class="leading-relaxed mb-3">
+<strong>User-Provided Cloud Storage:</strong> LizMusic does NOT provide cloud storage services. To use cloud sync features, you must have your own accounts with supported third-party providers (such as Google Drive, Dropbox, OneDrive, or WebDAV-compatible servers) that YOU set up and pay for independently.</p>
+<p class="leading-relaxed mb-3">When you connect your personal cloud storage accounts, your music files are synced directly between YOUR device and YOUR cloud provider. LizMusic does NOT store, access, or process your music files on our servers. We only store the encrypted connection credentials locally on your device.</p>
+<p class="leading-relaxed mb-3">Your cloud provider&#x27;s privacy policy applies to any data stored in your cloud accounts. You are responsible for:</p>
+<ul class="list-disc list-inside space-y-2 ml-4 mb-3">
+<li>Signing up for and paying for cloud storage subscriptions</li>
+<li>Maintaining the security of your cloud storage credentials</li>
+<li>Ensuring you have legal rights to all content in your cloud storage</li>
+<li>Complying with your cloud provider&#x27;s terms and privacy policies</li>
+</ul>
+<p class="leading-relaxed font-semibold text-brand-chestnut">LizMusic has no access to, control over, or responsibility for the content in your cloud storage accounts.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">6. Data Security</h2>
+<p class="leading-relaxed">We implement appropriate technical and organizational measures to protect your data against unauthorized access, alteration, disclosure, or destruction. However, no method of electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">7. Third-Party Services</h2>
+<p class="leading-relaxed mb-3">LizMusic integrates with the following third-party services:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Firebase (Google):</strong> Analytics, crash reporting, diagnostics, and remote configuration</li>
+<li>
+<strong>Google Mobile Ads / User Messaging Platform:</strong> Ad delivery and consent handling when ads are enabled</li>
+<li>
+<strong>Google Play Services:</strong> In-app updates, subscription billing, and payment processing</li>
+<li>
+<strong>Cloud Storage Providers:</strong> Google Drive, Dropbox, OneDrive, and WebDAV-compatible servers that you connect for file access and playback</li>
+<li>
+<strong>Optional Lyrics Providers:</strong> Third-party lyrics services used only if a limited-release lyrics lookup feature is enabled for your installation and you choose to use it</li>
+</ul>
+<p class="leading-relaxed mt-3">These services have their own privacy policies, and we encourage you to read them. We are not responsible for the privacy practices of third-party services. Data shared with these services is governed by their respective policies.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">8. Children&#x27;s Privacy</h2>
+<p class="leading-relaxed">LizMusic does not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">9. Your Rights and How to Exercise Them</h2>
+<p class="leading-relaxed mb-3">You have the following rights regarding your personal data:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Right to Access:</strong> You can access your data stored in the app settings at any time</li>
+<li>
+<strong>Right to Rectification/Correction:</strong> You have the right to correct or update any inaccurate personal data. You can edit your preferences, playlists, and settings directly in the app. For data we store, contact us at lizmediaapp@gmail.com</li>
+<li>
+<strong>Right to Delete:</strong> You can delete your data by uninstalling the app or contacting us at lizmediaapp@gmail.com to request deletion of analytics data</li>
+<li>
+<strong>Right to Data Portability:</strong> You can export your playlists and settings through the app&#x27;s export feature</li>
+<li>
+<strong>Right to Opt-Out:</strong> You can opt-out of analytics and crash reporting in the app settings. You can also opt-out of personalized ads (though we don&#x27;t use targeted advertising)</li>
+<li>
+<strong>Right to Withdraw Consent:</strong> For features requiring consent (cloud sync, analytics), you can withdraw consent at any time in app settings</li>
+<li>
+<strong>Right to Object:</strong> You can object to data processing by disabling specific features or uninstalling the app</li>
+<li>
+<strong>Right to Restrict Processing:</strong> You can limit how we process your data by disabling analytics and optional features</li>
+<li>
+<strong>Right to Lodge a Complaint:</strong> You have the right to file a complaint with your local data protection authority or supervisory authority if you believe we have violated your privacy rights</li>
+</ul>
+<p class="leading-relaxed mt-3 font-semibold">To exercise any of these rights, contact us at: lizmediaapp@gmail.com. We will respond to your request within 30 days.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">9a. Opt-Out of Data Sharing and Sales</h2>
+<p class="leading-relaxed mb-3">
+<strong>We do not sell your personal data.</strong> We do not share your data for cross-context behavioral advertising or targeted advertising purposes.</p>
+<p class="leading-relaxed mb-3">We do not use your music library, cloud file contents, playlists, lyrics, or listening history to create targeted advertising profiles. If ads are enabled in your app build or region, Google Mobile Ads and Google User Messaging Platform may process advertising and consent signals under Google&#x27;s policies and your device settings.</p>
+<p class="leading-relaxed mb-3">If you want to reduce third-party data processing, you can disable optional features where the app provides such controls, avoid connecting cloud accounts you do not want to use, revoke OAuth access from the connected provider account, and use Android or Google account privacy controls for ad preferences.</p>
+<p class="leading-relaxed mt-3">Alternatively, email us at lizmediaapp@gmail.com with &quot;Opt-Out Request&quot; in the subject line.</p>
+<p class="leading-relaxed mt-3">You can also opt-out of personalized advertising through the app&#x27;s consent prompt where available, through Android settings under &quot;Ads,&quot; or through your Google Ads Settings.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">9b. GDPR Rights (European Union Users)</h2>
+<p class="leading-relaxed mb-3">If you are located in the European Union (EU), European Economic Area (EEA), United Kingdom (UK), or Switzerland, you have additional rights under the General Data Protection Regulation (GDPR):</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Right to Access:</strong> Request a copy of all personal data we hold about you</li>
+<li>
+<strong>Right to Rectification:</strong> Correct any inaccurate or incomplete data</li>
+<li>
+<strong>Right to Erasure (&quot;Right to be Forgotten&quot;):</strong> Request deletion of your personal data</li>
+<li>
+<strong>Right to Restrict Processing:</strong> Limit how we use your data</li>
+<li>
+<strong>Right to Data Portability:</strong> Receive your data in a machine-readable format</li>
+<li>
+<strong>Right to Object:</strong> Object to processing based on legitimate interests</li>
+<li>
+<strong>Right to Withdraw Consent:</strong> Withdraw consent for data processing at any time</li>
+<li>
+<strong>Right to Lodge a Complaint:</strong> File a complaint with your national data protection authority</li>
+</ul>
+<p class="leading-relaxed mt-3">To exercise your GDPR rights, contact us at: lizmediaapp@gmail.com</p>
+<p class="leading-relaxed mt-3">EU Supervisory Authority Contact: You can find your local data protection authority at: https://edpb.europa.eu/about-edpb/board/members_en</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">9c. CCPA Rights (California Users)</h2>
+<p class="leading-relaxed mb-3">If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Right to Know:</strong> Request information about the categories and specific pieces of personal data we collect, use, disclose, and sell</li>
+<li>
+<strong>Right to Delete:</strong> Request deletion of your personal data, subject to certain exceptions</li>
+<li>
+<strong>Right to Opt-Out of Sale:</strong> We do NOT sell your personal data. If our practices change, we will provide a &quot;Do Not Sell My Personal Information&quot; link</li>
+<li>
+<strong>Right to Opt-Out of Sharing:</strong> Opt-out of sharing your data for cross-context behavioral advertising (we don&#x27;t engage in this practice)</li>
+<li>
+<strong>Right to Correct:</strong> Request correction of inaccurate personal information</li>
+<li>
+<strong>Right to Limit Use of Sensitive Personal Information:</strong> We do not collect or use sensitive personal information</li>
+<li>
+<strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising your CCPA rights</li>
+</ul>
+<p class="leading-relaxed mt-3">To exercise your CCPA rights, contact us at: lizmediaapp@gmail.com or call us toll-free (if applicable).</p>
+<p class="leading-relaxed mt-3">We will verify your identity before processing your request and respond within 45 days.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">9d. VCDPA Rights (Virginia Users)</h2>
+<p class="leading-relaxed mb-3">If you are a Virginia resident, you have rights under the Virginia Consumer Data Protection Act (VCDPA):</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Right to Access:</strong> Confirm whether we process your personal data and access that data</li>
+<li>
+<strong>Right to Correct:</strong> Correct inaccuracies in your personal data</li>
+<li>
+<strong>Right to Delete:</strong> Request deletion of your personal data</li>
+<li>
+<strong>Right to Data Portability:</strong> Obtain a copy of your data in a portable format</li>
+<li>
+<strong>Right to Opt-Out:</strong> Opt-out of targeted advertising, sale of personal data, and profiling (we don&#x27;t engage in these practices)</li>
+</ul>
+<p class="leading-relaxed mt-3">To exercise your VCDPA rights, contact us at: lizmediaapp@gmail.com. We will respond to your request within 45 days.</p>
+<p class="leading-relaxed mt-3">If we decline your request, you may appeal the decision by contacting us at lizmediaapp@gmail.com.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">9e. LGPD Rights (Brazil Users)</h2>
+<p class="leading-relaxed mb-3">If you are a resident of Brazil, you have rights under the Lei Geral de Proteção de Dados (LGPD) - Brazil&#x27;s General Data Protection Law:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Right to Confirmation and Access:</strong> Confirm the existence of data processing and access your personal data</li>
+<li>
+<strong>Right to Correction:</strong> Request correction of incomplete, inaccurate, or outdated data</li>
+<li>
+<strong>Right to Anonymization, Blocking, or Deletion:</strong> Request anonymization, blocking, or deletion of unnecessary or excessive data</li>
+<li>
+<strong>Right to Data Portability:</strong> Request transfer of your data to another service provider</li>
+<li>
+<strong>Right to Deletion:</strong> Request deletion of data processed with your consent</li>
+<li>
+<strong>Right to Information:</strong> Receive information about public and private entities with which we share data</li>
+<li>
+<strong>Right to Information about Consent:</strong> Be informed about the possibility and consequences of not providing consent</li>
+<li>
+<strong>Right to Withdraw Consent:</strong> Revoke your consent at any time</li>
+<li>
+<strong>Right to Object:</strong> Object to processing that violates LGPD</li>
+<li>
+<strong>Right to Review:</strong> Request review of automated decisions</li>
+</ul>
+<p class="leading-relaxed mt-3">To exercise your LGPD rights, contact us at: lizmediaapp@gmail.com</p>
+<p class="leading-relaxed mt-3">You can also file a complaint with the Brazilian National Data Protection Authority (ANPD) at: https://www.gov.br/anpd</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">10. Changes to This Policy</h2>
+<p class="leading-relaxed">We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the &quot;Last updated&quot; date.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">11. Permissions Explained</h2>
+<p class="leading-relaxed mb-3">LizMusic requests the following permissions to provide its features. All permissions are used only for their stated purpose:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Internet Access (INTERNET):</strong> Required for cloud storage synchronization with your own cloud accounts, app updates, subscriptions, optional analytics, optional ads, and limited-release online services</li>
+<li>
+<strong>Network State (ACCESS_NETWORK_STATE):</strong> Used to determine connectivity status for playback reliability, cloud access, analytics, ad loading, and update behavior</li>
+<li>
+<strong>Storage/Media Access (READ_EXTERNAL_STORAGE, READ_MEDIA_AUDIO):</strong> To read and play your music files from device storage. On Android 12 and below, READ_EXTERNAL_STORAGE is used for local music scanning and playback compatibility. On Android 13+, we use READ_MEDIA_AUDIO for more granular media-only access</li>
+<li>
+<strong>Storage Write Access (WRITE_EXTERNAL_STORAGE):</strong> Used only on Android 9 and below to save playlists and app data to external storage</li>
+<li>
+<strong>Foreground Service (FOREGROUND_SERVICE, FOREGROUND_SERVICE_MEDIA_PLAYBACK):</strong> To keep music playing in the background and display persistent playback notifications</li>
+<li>
+<strong>Notifications (POST_NOTIFICATIONS):</strong> To display playback controls, now-playing information, and media notifications (Android 13+ requires explicit permission)</li>
+<li>
+<strong>Wake Lock (WAKE_LOCK):</strong> To prevent the device from sleeping during active playback sessions</li>
+<li>
+<strong>Bluetooth (BLUETOOTH, BLUETOOTH_CONNECT):</strong> To connect to car audio systems, wireless headphones, and speakers for playback control and audio output</li>
+<li>
+<strong>Boot Completed (RECEIVE_BOOT_COMPLETED):</strong> Optional feature to restore playback state or resume widgets when device reboots</li>
+</ul>
+<p class="leading-relaxed mt-3">You can revoke any permission at any time through your device settings (Settings → Apps → LizMusic → Permissions). Some features may not work if related permissions are denied.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">12. Contact Us</h2>
+<p class="leading-relaxed">If you have any questions about this privacy policy, please contact us at:</p>
+<p class="mt-3 font-bold text-brand-chestnut">Email: lizmediaapp@gmail.com</p>
+</section>
+</div>
+</main>
+<footer class="border-t border-[#eee2d7] bg-white/88 py-10 px-6">
+<div class="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 text-[0.96rem] text-[#7a7a7a] sm:flex-row">
+<p>© 2026 Liz Media. All rights reserved.</p>
+<nav class="flex gap-6" aria-label="Legal links">
+<a href="/terms-plain.html" class="hover:text-brand-chestnut">Terms</a>
+<a href="/privacy-plain.html" class="hover:text-brand-chestnut">Privacy</a>
+</nav>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Feedback and Support - LizMusic</title>
+    <meta name="description" content="Contact LizMusic support, report bugs, and learn what details to include when you need help with WebDAV, OneDrive, or local playback.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/help-feedback.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="Feedback and Support - LizMusic">
+    <meta property="og:description" content="Share feedback, report bugs, and contact the LizMusic developer with the right details.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/help-feedback.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Feedback and Support - LizMusic">
+    <meta name="twitter:description" content="Bug-report and support guidance for LizMusic.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <main class="mx-auto max-w-5xl px-6 py-12">
+        <a href="/help.html" class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:text-primary">Back to Help Center</a>
+        <div class="mt-8 max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Feedback and Support</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Tell us what happened so we can help faster</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic support works best when you include the storage type you were using, what step failed, and any visible error text.
+                If your issue is tied to WebDAV or OneDrive, mention that clearly in the subject or first sentence.
+            </p>
+        </div>
+
+        <section class="mt-10 grid gap-5 md:grid-cols-2">
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Contact email</h2>
+                <p class="mt-4 text-[0.98rem] leading-8 text-slate-600">For general support, bug reports, and feature ideas, email us at:</p>
+                <a href="mailto:lizmediaapp@gmail.com" class="mt-4 inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">lizmediaapp@gmail.com</a>
+            </article>
+            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h2 class="text-[1.5rem] font-extrabold tracking-[-0.03em] text-slate-900">Good subject lines</h2>
+                <ul class="mt-4 space-y-3 text-[0.98rem] leading-8 text-slate-600">
+                    <li>Bug Report: WebDAV playback fails after saving storage</li>
+                    <li>Support: OneDrive authorization loop</li>
+                    <li>Feedback: local library scanning improvement</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2rem] font-extrabold tracking-[-0.04em] text-slate-900">What to include in your message</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Device and Android version</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Tell us what phone or tablet you use and which Android version it is running.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Storage type</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Say whether the issue came from local files, WebDAV, or OneDrive.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">What you expected</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Describe the action you were taking and what result you expected to see.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Error text or screenshots</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">If you can capture an error message or screenshot, include it. That usually shortens the back-and-forth a lot.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 px-8 py-10 text-white">
+            <h2 class="text-3xl font-extrabold">Before you email us</h2>
+            <ul class="mt-5 space-y-3 text-[0.98rem] leading-8 text-slate-300">
+                <li>Check the relevant WebDAV or OneDrive guide first.</li>
+                <li>Make sure the storage account or server still works in another trusted client.</li>
+                <li>If the problem is server-side or account-side, contact that provider as well.</li>
+            </ul>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="/help-webdav.html" class="inline-flex rounded-xl bg-primary px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-orange-500">WebDAV help</a>
+                <a href="/help-onedrive.html" class="inline-flex rounded-xl border border-slate-500 px-6 py-3 text-[1rem] font-bold text-white transition-colors hover:border-slate-300">OneDrive help</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

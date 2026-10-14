@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Dropbox Music Player for Android - LizMusic</title>
+    <meta name="description" content="LizMusic is an Android music player for Dropbox libraries, local files, offline cache, playlists, lyrics, and private cloud music playback.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/dropbox-music-player-android.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="Dropbox Music Player for Android - LizMusic">
+    <meta property="og:description" content="Play music stored in your own Dropbox account with LizMusic on Android, plus local files, playlists, lyrics, and offline workflows.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/dropbox-music-player-android.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dropbox Music Player for Android - LizMusic">
+    <meta name="twitter:description" content="Use LizMusic to play your own Dropbox music files on Android with playlists, lyrics, and offline-friendly listening.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Dropbox Music Player for Android",
+        "description": "How LizMusic supports Android playback for user-owned Dropbox music libraries.",
+        "url": "https://music.lizmediaapp.com/dropbox-music-player-android.html",
+        "image": "https://music.lizmediaapp.com/image/lizmusic-logo.png",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Liz Media",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://music.lizmediaapp.com/image/lizmusic-logo.png"
+          }
+        },
+        "mainEntityOfPage": "https://music.lizmediaapp.com/dropbox-music-player-android.html"
+      }
+    </script>
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <header class="fixed left-0 right-0 top-5 z-40 px-4 sm:px-6">
+        <div class="mx-auto flex h-[86px] max-w-[1400px] items-center justify-between rounded-[2rem] border border-[#efe3d7] bg-white/94 px-6 shadow-[0_22px_60px_-38px_rgba(106,74,47,0.35)] backdrop-blur-xl sm:px-8 lg:px-10">
+            <a href="/" class="flex items-center gap-3 transition-opacity hover:opacity-90">
+                <img src="./image/lizmusic-logo.png" alt="LizMusic" class="h-12 w-12 rounded-2xl object-contain">
+                <span class="text-[2rem] font-extrabold tracking-[-0.03em] text-[#141414]">LizMusic</span>
+            </a>
+            <nav class="hidden items-center gap-10 lg:flex">
+                <a href="/" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Home</a>
+                <a href="/features.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Features</a>
+                <a href="/help.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Help</a>
+                <a href="/privacy-plain.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Privacy</a>
+                <a href="/terms-plain.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Terms</a>
+            </nav>
+            <a href="open-app.html?target=home&source=seo-dropbox-hero" class="inline-flex min-w-[148px] items-center justify-center rounded-[1.1rem] bg-[#f47c20] px-6 py-4 text-base font-bold text-white shadow-[0_16px_32px_-22px_rgba(244,124,32,0.8)] transition-transform hover:-translate-y-0.5">Get App</a>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6 pb-12 pt-40">
+        <div class="max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Dropbox Playback</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Use LizMusic as a Dropbox music player for Android</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic helps you play audio files stored in your own Dropbox account while keeping the same Android music-player workflow you use for local files, Google Drive, OneDrive, and WebDAV.
+            </p>
+        </div>
+
+        <section class="mt-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.35rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Why Dropbox support matters</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-3">
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Bring your own files</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">LizMusic is a player client. Your music stays in the Dropbox account and folders that you control.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Music-first browsing</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Use a dedicated playback interface instead of treating albums like generic files in a cloud-drive browser.</p>
+                </article>
+                <article class="rounded-2xl bg-slate-50 p-5">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Offline follow-up</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Pair cloud playback with offline-friendly listening when network quality is not reliable.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-[2.35rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Related LizMusic pages</h2>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                <a href="/help-dropbox.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Dropbox help</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Setup notes and troubleshooting for connecting your own Dropbox account.</p>
+                </a>
+                <a href="/cloud-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Cloud music player for Android</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Compare Dropbox with Google Drive, OneDrive, WebDAV, local files, and offline cache.</p>
+                </a>
+                <a href="/google-drive-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">Google Drive music player</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Use the same LizMusic workflow with your own Google Drive music library.</p>
+                </a>
+                <a href="/onedrive-music-player-android.html" class="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.2rem] font-extrabold tracking-[-0.03em] text-slate-900">OneDrive music player</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Play music from your own Microsoft OneDrive account on Android.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

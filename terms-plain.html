@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // canonical-host-redirect
+    (function () {
+      var canonicalHost = 'music.lizmediaapp.com';
+      var host = window.location.hostname.toLowerCase();
+      var path = window.location.pathname || '/';
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+
+      if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+        return;
+      }
+
+      var targetHost = host;
+      var shouldRedirect = false;
+
+      if (host === 'lizmediaapp.github.io') {
+        targetHost = canonicalHost;
+        path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+        shouldRedirect = true;
+      } else if (host === 'www.music.lizmediaapp.com') {
+        targetHost = canonicalHost;
+        shouldRedirect = true;
+      } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+        targetHost = canonicalHost;
+        path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+        shouldRedirect = true;
+      } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+        path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+        shouldRedirect = true;
+      } else if (host !== canonicalHost) {
+        return;
+      }
+
+      if (path === '/index.html') {
+        path = '/';
+        shouldRedirect = true;
+      } else if (/\/index\.html$/.test(path)) {
+        path = path.replace(/\/index\.html$/, '/');
+        shouldRedirect = true;
+      }
+
+      if (host === canonicalHost && window.location.protocol !== 'https:') {
+        shouldRedirect = true;
+      }
+
+      var target = 'https://' + targetHost + path + search + hash;
+      if (shouldRedirect && target !== window.location.href) {
+        window.location.replace(target);
+      }
+    })();
+  </script>
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Terms of Service - LizMusic</title>
+  <meta name="description" content="Read the LizMusic Terms of Service covering acceptable use, user-provided music content, Google Drive, Dropbox, WebDAV, OneDrive, subscriptions, and legal terms.">
+  <link rel="canonical" href="https://music.lizmediaapp.com/terms-plain.html">
+  <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+  <link rel="stylesheet" href="./assets/static-tailwind.css">
+  <meta property="og:title" content="Terms of Service - LizMusic">
+  <meta property="og:description" content="Read the LizMusic Terms of Service covering acceptable use, user-provided music content, Google Drive, Dropbox, WebDAV, OneDrive, subscriptions, and legal terms.">
+  <meta property="og:url" content="https://music.lizmediaapp.com/terms-plain.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Terms of Service - LizMusic">
+  <meta name="twitter:description" content="Read the LizMusic Terms of Service covering acceptable use, user-provided music content, Google Drive, Dropbox, WebDAV, OneDrive, subscriptions, and legal terms.">
+  <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Terms of Service - LizMusic","url":"https://music.lizmediaapp.com/terms-plain.html","description":"Read the LizMusic Terms of Service covering acceptable use, user-provided music content, Google Drive, Dropbox, WebDAV, OneDrive, subscriptions, and legal terms.","isPartOf":{"@type":"WebSite","name":"LizMusic","url":"https://music.lizmediaapp.com/"}}</script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+<main class="max-w-4xl mx-auto px-6 py-12">
+<h1 class="text-4xl md:text-5xl font-black text-brand-chestnut mb-8">Terms of Service</h1>
+<p class="text-sm text-text-muted mb-8">Last updated: May 21, 2026</p>
+<p class="text-sm text-text-muted mb-8 font-semibold">Version 1.3.0</p>
+<div class="space-y-8 text-text-muted">
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">1. Acceptance of Terms</h2>
+<p class="leading-relaxed">By downloading, installing, or using LizMusic (&quot;the App&quot;), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">2. Description of Service</h2>
+<p class="leading-relaxed mb-3">
+<strong>IMPORTANT: LizMusic is a music player client application only.</strong> We do NOT provide, host, store, or distribute any music content, audio files, or media. The App allows you to:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>Play audio files that YOU provide from your own device storage or cloud accounts</li>
+<li>Organize YOUR music library with playlists and metadata management</li>
+<li>Connect to YOUR own supported cloud storage sources such as Google Drive, Dropbox, OneDrive, and WebDAV-compatible servers that YOU set up and maintain</li>
+<li>Customize audio playback with equalizer settings and audio effects</li>
+<li>Access YOUR music offline without internet connection</li>
+<li>Control playback via bluetooth devices and car audio systems</li>
+<li>Use gesture controls like shake-to-skip for hands-free operation</li>
+<li>Display and organize local lyrics files that you provide, such as <code>.lrc</code> files stored with your music library</li>
+<li>Access optional premium features through in-app subscriptions</li>
+</ul>
+<p class="leading-relaxed mt-3 font-semibold text-brand-chestnut">You are solely responsible for providing your own music files, lyrics files, and cloud storage connections. LizMusic does not provide any content, streaming services, or music sources.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">3. License and Ownership</h2>
+<p class="leading-relaxed mb-3">
+<strong>3.1 App License:</strong> Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use LizMusic for personal, non-commercial purposes.</p>
+<p class="leading-relaxed mb-3">
+<strong>3.2 Your Content:</strong> You retain all ownership rights to your music files, lyrics files, and data. LizMusic does not claim any ownership over your content.</p>
+<p class="leading-relaxed">
+<strong>3.3 Intellectual Property:</strong> The App, including its design, features, and code, is owned by LizMusic (Individual Developer) and protected by copyright and other intellectual property laws.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">4. User Responsibilities</h2>
+<p class="leading-relaxed mb-3">You agree to:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>
+<strong>Legal Content:</strong> Only use music files, lyrics files, and related metadata that you own or have the legal right to access and use</li>
+<li>
+<strong>Copyright Compliance:</strong> Respect copyright laws and not use the App to infringe on others&#x27; rights</li>
+<li>
+<strong>Personal Use:</strong> Use the App for personal, non-commercial purposes only</li>
+<li>
+<strong>No Distribution:</strong> Not redistribute, share, or publicly perform copyrighted music or lyrics without proper authorization</li>
+<li>
+<strong>Provide Your Own Content:</strong> Supply your own music files, lyrics files, cloud storage accounts, and WebDAV server connections</li>
+<li>
+<strong>Cloud Account Setup:</strong> Set up and maintain your own supported cloud storage accounts, including Google Drive, Dropbox, OneDrive, or a WebDAV-compatible server, at your own expense</li>
+<li>
+<strong>Accurate Information:</strong> Provide accurate information if you contact us for support</li>
+<li>
+<strong>Security:</strong> Keep your cloud storage credentials secure and confidential</li>
+</ul>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">5. Content and Copyright Disclaimer</h2>
+<p class="leading-relaxed mb-3">
+<strong>5.1 No Content Provided:</strong> LizMusic does NOT provide, host, store, stream, or distribute any music, audio files, lyrics, or media content. We are a playback client/tool only. You must provide all content yourself.</p>
+<p class="leading-relaxed mb-3">
+<strong>5.2 User Content Responsibility:</strong> You are solely and entirely responsible for:</p>
+<ul class="list-disc list-inside space-y-2 ml-4 mb-3">
+<li>Obtaining, licensing, or owning all music files, lyrics files, and related content you use through the App</li>
+<li>Ensuring you have legal rights to access, display, and play all audio and lyric content</li>
+<li>Complying with all applicable copyright laws and licensing requirements</li>
+<li>Setting up and paying for your own cloud storage services</li>
+<li>Configuring your own Google Drive, Dropbox, OneDrive, WebDAV server, or other supported cloud storage connections</li>
+<li>Any copyright infringement or unauthorized use of content</li>
+</ul>
+<p class="leading-relaxed mb-3">
+<strong>5.3 No Liability for User Content:</strong> The LizMusic developer has NO control over, does NOT review, and is NOT responsible for any music or content you access through the App. We cannot and do not verify whether you have rights to any content.</p>
+<p class="leading-relaxed mb-3">
+<strong>5.4 Lyrics and Metadata:</strong> Any lyrics files, lyric text, or related metadata that you import, store, display, or use with the App are your responsibility. Public releases of LizMusic do not promise general online lyrics search or download capability. If a limited-release lyrics lookup feature is enabled for certain approved installations, it remains optional, may depend on third-party sources, and does not transfer responsibility for copyright compliance to LizMusic.</p>
+<p class="leading-relaxed mb-3">
+<strong>5.5 Copyright Infringement:</strong> If you use the App to play or display unauthorized copyrighted content, YOU (not the LizMusic developer) are solely responsible for any legal consequences, damages, or liability.</p>
+<p class="leading-relaxed">
+<strong>5.6 Indemnification:</strong> You agree to indemnify and hold the LizMusic developer harmless from any claims, damages, or expenses arising from your use of copyrighted content through the App.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">6. Prohibited Activities</h2>
+<p class="leading-relaxed mb-3">You may not:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>Reverse engineer, decompile, or disassemble the App</li>
+<li>Modify, adapt, or create derivative works of the App</li>
+<li>Remove or alter any copyright, trademark, or proprietary notices</li>
+<li>Use the App to infringe on intellectual property rights</li>
+<li>Use the App for any illegal or unauthorized purpose</li>
+<li>Play, store, display, or distribute content for which you do not have proper rights or licenses</li>
+<li>Use the App to provide music streaming services to others</li>
+<li>Attempt to gain unauthorized access to any portion of the App or its systems</li>
+<li>Distribute malware or viruses through the App</li>
+</ul>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">7. Cloud Storage Integration</h2>
+<p class="leading-relaxed mb-3">
+<strong>7.1 User-Provided Accounts:</strong> Cloud storage integration requires you to have your own accounts with supported third-party providers (such as Google Drive, Dropbox, OneDrive, and WebDAV-compatible servers). LizMusic does not provide or include any cloud storage services or accounts.</p>
+<p class="leading-relaxed mb-3">
+<strong>7.2 Authorization and Access Scope:</strong> When you authorize a provider such as Google Drive, Dropbox, or OneDrive, or configure a WebDAV-compatible server, you permit LizMusic to access the folders, files, metadata, and music-related content needed for browsing, import, playback, artwork, lyrics, and optional offline cache features. If you revoke access, change credentials, remove files, or the provider changes its API or service availability, related LizMusic features may stop working.</p>
+<p class="leading-relaxed mb-3">
+<strong>7.3 Provider Availability and API Changes:</strong> Cloud playback depends on the continued availability, authorization rules, rate limits, file-link behavior, and API compatibility of the provider you connect. Google Drive, Dropbox, OneDrive, and WebDAV-compatible servers may change their services, permissions, account requirements, or API behavior. Those changes may affect browsing, import, playback, lyrics, artwork, or offline cache features for that source.</p>
+<p class="leading-relaxed mb-3">
+<strong>7.4 Third-Party Services:</strong> When you use cloud storage features, you are subject to the terms and policies of those third-party providers. You are responsible for complying with their terms of service.</p>
+<p class="leading-relaxed mb-3">
+<strong>7.5 Your Responsibility:</strong> You are responsible for:</p>
+<ul class="list-disc list-inside space-y-2 ml-4 mb-3">
+<li>Signing up for and paying for your own cloud storage subscriptions</li>
+<li>Configuring and maintaining your cloud storage connections</li>
+<li>Maintaining the security of your cloud storage accounts and credentials</li>
+<li>Ensuring you have sufficient storage space and bandwidth</li>
+</ul>
+<p class="leading-relaxed">
+<strong>7.6 No Liability:</strong> We are not responsible for any data loss, corruption, unauthorized access, service outages, API changes, authorization changes, account limitations, rate limits, or billing issues related to third-party cloud storage services.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">8. Subscriptions and In-App Purchases</h2>
+<p class="leading-relaxed mb-3">
+<strong>8.1 Premium Features:</strong> LizMusic may offer premium features, subscriptions, or in-app purchases for enhanced app functionality (NOT for content or music). All music content must be provided by you. Pricing and available features are displayed within the App.</p>
+<p class="leading-relaxed mb-3">
+<strong>8.2 Payment Processing:</strong> All purchases are processed through Google Play Store. Your payment information is handled by Google, not LizMusic. You agree to Google Play&#x27;s payment terms.</p>
+<p class="leading-relaxed mb-3">
+<strong>8.3 Subscriptions:</strong> Subscriptions automatically renew at the end of each billing period unless you cancel before the renewal date. You can manage or cancel subscriptions through your Google Play account settings.</p>
+<p class="leading-relaxed mb-3">
+<strong>8.4 Refunds:</strong> Refund requests are subject to Google Play&#x27;s refund policy. We do not directly process refunds. Contact Google Play support for refund inquiries.</p>
+<p class="leading-relaxed mb-3">
+<strong>8.5 Price Changes:</strong> We reserve the right to change subscription prices with advance notice. Price changes will not affect active subscriptions until the next renewal period.</p>
+<p class="leading-relaxed mb-3">
+<strong>8.6 Cancellation:</strong> You may cancel your subscription at any time. Upon cancellation, you will retain access to premium features until the end of your current billing period.</p>
+<p class="leading-relaxed">
+<strong>8.7 What Subscription Includes:</strong> Premium subscriptions provide enhanced app features (such as advanced equalizer, additional themes, or cloud sync features). Subscriptions do NOT include music content, cloud storage accounts, or access to any media files.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">9. App Updates and Modifications</h2>
+<p class="leading-relaxed mb-3">
+<strong>9.1 Automatic Updates:</strong> The App may automatically check for updates and download them to improve performance, security, and functionality.</p>
+<p class="leading-relaxed mb-3">
+<strong>9.2 Mandatory Updates:</strong> Some updates may be required for security or compatibility reasons. If you do not install mandatory updates, some or all features of the App may become unavailable.</p>
+<p class="leading-relaxed mb-3">
+<strong>9.3 Update Mechanism:</strong> Updates are delivered through Google Play Store and may use Firebase Remote Config to determine update requirements, availability, or limited feature rollouts.</p>
+<p class="leading-relaxed">
+<strong>9.4 Feature Changes:</strong> We reserve the right to add, modify, or remove features in updates. Continued use of the App after updates constitutes acceptance of any changes.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">10. Disclaimer of Warranties</h2>
+<p class="leading-relaxed">THE APP IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. YOUR USE OF THE APP IS AT YOUR OWN RISK.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">11. Limitation of Liability</h2>
+<p class="leading-relaxed">TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LIZMUSIC DEVELOPER SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES RESULTING FROM YOUR USE OF THE APP. WE ARE NOT LIABLE FOR ANY COPYRIGHT INFRINGEMENT OR UNAUTHORIZED USE OF CONTENT BY YOU.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">12. Terms Modifications</h2>
+<p class="leading-relaxed">We reserve the right to modify these Terms at any time. We will notify you of any material changes by posting the updated Terms within the App or on our website. Continued use of the App after changes constitutes acceptance of the modified Terms.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">13. Termination</h2>
+<p class="leading-relaxed mb-3">
+<strong>13.1 By You:</strong> You may stop using the App at any time by uninstalling it from your devices and canceling any active subscriptions through Google Play.</p>
+<p class="leading-relaxed">
+<strong>13.2 By Us:</strong> We reserve the right to terminate or suspend your access to the App if you violate these Terms or engage in prohibited activities. Termination does not entitle you to a refund.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">14. Copyright and DMCA</h2>
+<p class="leading-relaxed mb-3">We respect intellectual property rights. However, since LizMusic does not host, store, or provide any content, any copyright issues are solely between you and the copyright holders. If you believe that any content accessible through the App infringes your copyright, please contact us with:</p>
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li>Description of the copyrighted work</li>
+<li>Your contact information</li>
+<li>A statement of good faith belief that the use is not authorized</li>
+<li>A statement that the information is accurate and you are authorized to act</li>
+</ul>
+<p class="leading-relaxed mt-3">Note: We cannot remove content as we do not host any content. Copyright claims should be directed to the user or their cloud storage provider.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">15. Governing Law</h2>
+<p class="leading-relaxed">These Terms shall be governed by and construed in accordance with the laws applicable to individual developers operating digital services, without regard to conflict of law provisions.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">16. Contact Information</h2>
+<p class="leading-relaxed">If you have any questions about these Terms of Service, please contact us at:</p>
+<p class="mt-3 font-bold text-brand-chestnut">Email: lizmediaapp@gmail.com</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">17. Severability</h2>
+<p class="leading-relaxed">If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force.</p>
+</section>
+<section>
+<h2 class="text-2xl font-black text-brand-chestnut mb-4">18. Entire Agreement</h2>
+<p class="leading-relaxed">These Terms constitute the entire agreement between you and the LizMusic developer regarding the use of the App and supersede any prior agreements.</p>
+</section>
+</div>
+</main>
+<footer class="border-t border-[#eee2d7] bg-white/88 py-10 px-6">
+<div class="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 text-[0.96rem] text-[#7a7a7a] sm:flex-row">
+<p>© 2026 Liz Media. All rights reserved.</p>
+<nav class="flex gap-6" aria-label="Legal links">
+<a href="/terms-plain.html" class="hover:text-brand-chestnut">Terms</a>
+<a href="/privacy-plain.html" class="hover:text-brand-chestnut">Privacy</a>
+</nav>
+</div>
+</footer>
+</body>
+</html>

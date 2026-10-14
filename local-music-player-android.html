@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Local Music Player for Android - LizMusic</title>
+    <meta name="description" content="Use LizMusic as a local music player for Android with your own audio files, playlists, favorites, lyrics, offline listening, and cloud-connected library options.">
+    <link rel="canonical" href="https://music.lizmediaapp.com/local-music-player-android.html">
+    <link rel="icon" type="image/x-icon" href="./image/lizmusic.ico">
+    <meta property="og:title" content="Local Music Player for Android - LizMusic">
+    <meta property="og:description" content="Play and organize your own local music files on Android with LizMusic, including playlists, favorites, lyrics, and offline-friendly workflows.">
+    <meta property="og:url" content="https://music.lizmediaapp.com/local-music-player-android.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Local Music Player for Android - LizMusic">
+    <meta name="twitter:description" content="A local Android music player for your own files, playlists, lyrics, offline listening, and library control.">
+    <meta name="twitter:image" content="https://music.lizmediaapp.com/image/lizmusic-logo.png">
+    <link rel="stylesheet" href="./assets/static-tailwind.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Local Music Player for Android",
+        "description": "Use LizMusic as a local music player for Android with your own audio files, playlists, favorites, lyrics, offline listening, and cloud-connected library options.",
+        "url": "https://music.lizmediaapp.com/local-music-player-android.html",
+        "image": "https://music.lizmediaapp.com/image/lizmusic-logo.png",
+        "datePublished": "2026-05-15T00:00:00Z",
+        "dateModified": "2026-05-15T00:00:00Z",
+        "author": {"@type": "Organization", "name": "LizMusic", "url": "https://music.lizmediaapp.com"},
+        "publisher": {"@type": "Organization", "name": "Liz Media", "url": "https://lizmediaapp.com"}
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>body{font-family:'Plus Jakarta Sans',sans-serif;}</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <header class="fixed left-0 right-0 top-5 z-40 px-4 sm:px-6">
+        <div class="mx-auto flex h-[86px] max-w-[1400px] items-center justify-between rounded-[2rem] border border-[#efe3d7] bg-white/94 px-6 shadow-[0_22px_60px_-38px_rgba(106,74,47,0.35)] backdrop-blur-xl sm:px-8 lg:px-10">
+            <a href="/" class="flex items-center gap-3 transition-opacity hover:opacity-90">
+                <img src="./image/lizmusic-logo.png" alt="LizMusic" class="h-12 w-12 rounded-2xl object-contain">
+                <span class="text-[2rem] font-extrabold tracking-[-0.03em] text-[#141414]">LizMusic</span>
+            </a>
+            <nav class="hidden items-center gap-10 lg:flex">
+                <a href="/" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Home</a>
+                <a href="/features.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Features</a>
+                <a href="/help.html" class="text-[1.05rem] font-medium text-[#1c1c1c] transition-colors hover:text-primary">Help</a>
+            </nav>
+            <a href="open-app.html?target=home&source=seo-local-hero" class="inline-flex min-w-[148px] items-center justify-center rounded-[1.1rem] bg-[#f47c20] px-6 py-4 text-base font-bold text-white shadow-[0_16px_32px_-22px_rgba(244,124,32,0.8)] transition-transform hover:-translate-y-0.5">Get App</a>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6 pt-40 pb-12">
+        <div class="max-w-3xl">
+            <p class="text-[0.92rem] font-bold uppercase tracking-[0.22em] text-primary">Local Music</p>
+            <h1 class="mt-4 text-[2.85rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-slate-900">Use LizMusic as a local music player for Android</h1>
+            <p class="mt-4 text-[1.05rem] leading-9 text-slate-600 sm:text-[1.08rem]">
+                LizMusic is built for people who keep their own music files. You can use it for local playback on Android, then extend the same library workflow with WebDAV, OneDrive, offline cache, playlists, and lyrics.
+            </p>
+        </div>
+
+        <section class="mt-10 grid gap-5 md:grid-cols-3">
+            <article class="rounded-2xl border border-slate-200 bg-white p-6">
+                <h2 class="text-[1.2rem] font-extrabold text-slate-900">Your files stay yours</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">LizMusic is a player client. It is designed around music you already own, organize, and choose to play.</p>
+            </article>
+            <article class="rounded-2xl border border-slate-200 bg-white p-6">
+                <h2 class="text-[1.2rem] font-extrabold text-slate-900">Offline-friendly</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Local playback helps when you travel, commute, or listen in places where network quality is unpredictable.</p>
+            </article>
+            <article class="rounded-2xl border border-slate-200 bg-white p-6">
+                <h2 class="text-[1.2rem] font-extrabold text-slate-900">Library tools</h2>
+                <p class="mt-3 text-[0.98rem] leading-8 text-slate-600">Playlists, favorites, album browsing, and local lyrics files help make personal collections easier to use.</p>
+            </article>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-[2.35rem] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900">Related LizMusic pages</h2>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                <a href="/offline-music-player-android.html" class="rounded-2xl border border-slate-200 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Offline music player for Android</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">Go deeper into offline listening and cache-oriented workflows.</p>
+                </a>
+                <a href="/android-music-player-with-lyrics.html" class="rounded-2xl border border-slate-200 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                    <h3 class="text-[1.15rem] font-extrabold text-slate-900">Android music player with lyrics</h3>
+                    <p class="mt-2 text-[0.98rem] leading-8 text-slate-600">See how lyrics and organization features fit local libraries.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-[#eee2d7] bg-white/88 py-10 px-6">
+        <div class="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 text-[0.96rem] text-[#7a7a7a] sm:flex-row">
+            <p>&copy; 2026 Liz Media. All rights reserved.</p>
+            <nav class="flex gap-6">
+                <a href="/help.html" class="hover:text-primary">Help Center</a>
+                <a href="/privacy-plain.html" class="hover:text-primary">Privacy Policy</a>
+                <a href="/terms-plain.html" class="hover:text-primary">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
