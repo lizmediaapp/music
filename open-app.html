@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // canonical-host-redirect
+      (function () {
+        var canonicalHost = 'music.lizmediaapp.com';
+        var host = window.location.hostname.toLowerCase();
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        if (host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost')) {
+          return;
+        }
+
+        var targetHost = host;
+        var shouldRedirect = false;
+
+        if (host === 'lizmediaapp.github.io') {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === 'www.music.lizmediaapp.com') {
+          targetHost = canonicalHost;
+          shouldRedirect = true;
+        } else if ((host === 'lizmediaapp.com' || host === 'www.lizmediaapp.com') && (path === '/music' || path.indexOf('/music/') === 0)) {
+          targetHost = canonicalHost;
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host === canonicalHost && (path === '/music' || path.indexOf('/music/') === 0)) {
+          path = path.replace(/^\/music(?=\/|$)/, '') || '/';
+          shouldRedirect = true;
+        } else if (host !== canonicalHost) {
+          return;
+        }
+
+        if (path === '/index.html') {
+          path = '/';
+          shouldRedirect = true;
+        } else if (/\/index\.html$/.test(path)) {
+          path = path.replace(/\/index\.html$/, '/');
+          shouldRedirect = true;
+        }
+
+        if (host === canonicalHost && window.location.protocol !== 'https:') {
+          shouldRedirect = true;
+        }
+
+        var target = 'https://' + targetHost + path + search + hash;
+        if (shouldRedirect && target !== window.location.href) {
+          window.location.replace(target);
+        }
+      })();
+    </script>
+<title>Open LizMusic</title>
+  <meta
+    name="description"
+    content="Open LizMusic if it is installed, or continue to Google Play to install it."
+  />
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg: #fff8ef;
+      --ink: #23130b;
+      --muted: #6a5a50;
+      --card: rgba(255, 255, 255, 0.92);
+      --brand: #f47c20;
+      --brand-dark: #d8640f;
+      --line: rgba(36, 19, 11, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(255, 196, 104, 0.55), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(110, 231, 183, 0.35), transparent 32%),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    .shell {
+      width: min(100%, 560px);
+      padding: 40px 32px;
+      border-radius: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: 0 36px 80px -50px rgba(35, 19, 11, 0.45);
+      text-align: center;
+      backdrop-filter: blur(14px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(244, 124, 32, 0.12);
+      color: var(--brand-dark);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2rem, 7vw, 3.3rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    p {
+      margin: 0 auto;
+      max-width: 34rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      padding: 15px 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      color: white;
+      background: linear-gradient(135deg, #f59e0b, var(--brand));
+      box-shadow: 0 18px 40px -24px rgba(244, 124, 32, 0.75);
+    }
+
+    .button-secondary {
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .status {
+      margin-top: 22px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="badge">LizMusic Smart Link</div>
+    <h1>Open LizMusic</h1>
+    <p id="copy">
+      We will try to open LizMusic on your device. If it is not installed, you can continue to Google Play.
+    </p>
+    <div class="actions">
+      <a id="open-button" class="button button-primary" href="#">Open App</a>
+      <a
+        id="store-button"
+        class="button button-secondary"
+        href="https://play.google.com/store/apps/details?id=io.vicp.pomok.liz.music"
+        rel="noopener noreferrer"
+      >
+        Google Play
+      </a>
+    </div>
+    <p id="status" class="status">Preparing smart redirect...</p>
+  </main>
+
+  <script>
+    (function () {
+      var packageName = 'io.vicp.pomok.liz.music';
+      var appScheme = 'lizmusic';
+      var appHost = 'open';
+      var playUrl = 'https://play.google.com/store/apps/details?id=' + packageName;
+      var params = new URLSearchParams(window.location.search);
+      var currentUrl = new URL(window.location.href);
+      var openButton = document.getElementById('open-button');
+      var storeButton = document.getElementById('store-button');
+      var status = document.getElementById('status');
+      var copy = document.getElementById('copy');
+      var launched = false;
+
+      if (!params.has('target')) {
+        params.set('target', 'home');
+      }
+
+      if (!params.has('source')) {
+        params.set('source', document.referrer ? 'referral' : 'website');
+      }
+
+      if (!params.has('referrer') && document.referrer) {
+        params.set('referrer', document.referrer);
+      }
+
+      var query = params.toString();
+      var appUrl = appScheme + '://' + appHost + (query ? '?' + query : '');
+      var browserFallbackUrl = currentUrl.origin + currentUrl.pathname + '?store=1&' + query;
+      var intentUrl =
+        'intent://open' +
+        (query ? '?' + query : '') +
+        '#Intent;scheme=' + appScheme +
+        ';package=' + packageName +
+        ';S.browser_fallback_url=' + encodeURIComponent(browserFallbackUrl) +
+        ';end';
+      var wantsStore = params.get('store') === '1';
+      var isAndroid = /Android/i.test(navigator.userAgent);
+
+      openButton.href = appUrl;
+      storeButton.href = playUrl;
+
+      if (wantsStore) {
+        status.textContent = 'Opening Google Play...';
+        copy.textContent = 'LizMusic is not installed yet. Continue on Google Play to install it.';
+        window.location.replace(playUrl);
+        return;
+      }
+
+      if (!isAndroid) {
+        status.textContent = 'Deep links are ready for Android devices. You can still install LizMusic from Google Play.';
+        copy.textContent = 'This page is optimized for Android campaign traffic and ASO landing links.';
+        return;
+      }
+
+      status.textContent = 'Trying to open LizMusic...';
+
+      var fallbackTimer = window.setTimeout(function () {
+        if (launched) {
+          return;
+        }
+        status.textContent = 'If LizMusic did not open, continue to Google Play.';
+      }, 1600);
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') {
+          launched = true;
+          window.clearTimeout(fallbackTimer);
+        }
+      });
+
+      window.setTimeout(function () {
+        window.location.href = intentUrl;
+      }, 120);
+    })();
+  </script>
+</body>
+</html>

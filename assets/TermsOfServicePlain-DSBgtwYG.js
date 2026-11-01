@@ -1,0 +1,1 @@
+import{j as e}from"./index-C3aCZL2C.js";import{T as r}from"./TermsOfServiceContent-Bh1MTzEL.js";const m=()=>e.jsx("div",{className:"min-h-screen bg-white",children:e.jsx("div",{className:"max-w-4xl mx-auto px-6 py-8",children:e.jsx(r,{})})});export{m as TermsOfServicePlain};
